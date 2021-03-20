@@ -5,5 +5,7 @@
 
 /** Baş Aşağı İskelet'i deneyen uygulama. */
 module başaşağıderebeyi.deneme {
+	exports başaşağıderebeyi.deneme;
+	
 	requires başaşağıderebeyi.iskelet;
 }
