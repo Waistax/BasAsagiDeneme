@@ -18,13 +18,13 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 0;
 	/** Yaması. */
-	public static final int YAMASI = 3;
+	public static final int YAMASI = 4;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
 	
 	/** Göstericiyi ve istenen tık oranını sağlar. */
-	public Deneme() {
+	private Deneme() {
 		Gösterici
 			.sağla(
 				new Gösterici(
