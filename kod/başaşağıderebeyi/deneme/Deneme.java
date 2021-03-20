@@ -13,6 +13,7 @@ import static org.lwjgl.system.MemoryUtil.*;
 import başaşağıderebeyi.iskelet.*;
 import başaşağıderebeyi.iskelet.görsel.*;
 import başaşağıderebeyi.iskelet.görsel.köşedizisi.*;
+import başaşağıderebeyi.iskelet.görsel.yazı.*;
 import başaşağıderebeyi.iskelet.olaylar.*;
 import başaşağıderebeyi.kütüphane.girdi.*;
 import başaşağıderebeyi.kütüphane.matematik.sayısal.*;
@@ -24,7 +25,7 @@ public class Deneme {
 	/** Ana sürümü. */
 	public static final int ANA_SÜRÜMÜ = 0;
 	/** Ara sürümü. */
-	public static final int ARA_SÜRÜMÜ = 1;
+	public static final int ARA_SÜRÜMÜ = 2;
 	/** Yaması. */
 	public static final int YAMASI = 0;
 	/** Bütün sürümü. */
@@ -37,6 +38,7 @@ public class Deneme {
 	private float öncekiBoyutu;
 	private float çizilecekBoyutu;
 	private Gölgelendirici gölgelendiricisi;
+	private DeğişkenYazıGörselleştirici yazar;
 	
 	/** Göstericiyi ve istenen tık oranını sağlar. */
 	public Deneme() {
@@ -127,6 +129,16 @@ public class Deneme {
 		gölgelendiricisi = new Gölgelendirici("renkliDikdörtgen");
 		gölgelendiricisi.bağla();
 		gölgelendiricisi.değerinKonumunuBul("boyutu");
+		
+		yazar = new DeğişkenYazıGörselleştirici(
+			100,
+			new YazıŞekli("sabitGenişlikliBüyük"),
+			10.0F,
+			new Dizey4().izdüşümDizeyineÇevir(1280.0F, 720.0F, 20.0F),
+			0.9F);
+		
+		yazar.boyutunuDeğiştir(30.0F);
+		yazar.renginiEdin().bileşenleriniDeğiştir(0.1F, 0.1F, 0.7F, 1.0F);
 	}
 	
 	private void güncelle() {
@@ -149,6 +161,7 @@ public class Deneme {
 	}
 	
 	private void çiz() {
+		gölgelendiricisi.bağla();
 		çizilecekBoyutu = aradeğerleriniBul(
 			öncekiBoyutu,
 			boyutu,
@@ -156,5 +169,14 @@ public class Deneme {
 		
 		gölgelendiricisi.değeriDeğiştir("boyutu", çizilecekBoyutu);
 		köşeDizisi.çiz();
+		gölgelendiricisi.kopar();
+		
+		yazar
+			.yaz(
+				-100.0F,
+				300.0F,
+				"Kare Oranı: " +
+					İskelet.NESNESİ.karelerininOranınınOrtalamasınıEdin());
+		yazar.çiz();
 	}
 }
