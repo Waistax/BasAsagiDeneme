@@ -6,4 +6,6 @@
 /** Baş Aşağı İskelet'i deneyen uygulama. */
 module başaşağıderebeyi.deneme {
 	requires başaşağıderebeyi.iskelet;
+	
+	requires java.desktop;
 }

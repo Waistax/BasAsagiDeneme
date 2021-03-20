@@ -19,13 +19,17 @@ import başaşağıderebeyi.kütüphane.girdi.*;
 import başaşağıderebeyi.kütüphane.matematik.sayısal.*;
 import başaşağıderebeyi.kütüphane.olay.*;
 
+import java.io.*;
+
+import javax.imageio.*;
+
 /** Baş Aşağı İskelet'i deneyen uygulama. */
 @Uygulama
 public class Deneme {
 	/** Ana sürümü. */
 	public static final int ANA_SÜRÜMÜ = 0;
 	/** Ara sürümü. */
-	public static final int ARA_SÜRÜMÜ = 2;
+	public static final int ARA_SÜRÜMÜ = 3;
 	/** Yaması. */
 	public static final int YAMASI = 0;
 	/** Bütün sürümü. */
@@ -139,6 +143,27 @@ public class Deneme {
 		
 		yazar.boyutunuDeğiştir(30.0F);
 		yazar.renginiEdin().bileşenleriniDeğiştir(0.1F, 0.1F, 0.7F, 1.0F);
+		
+		try {
+			Gösterici
+				.edin()
+				.imleciDeğiştir(
+					Gösterici
+						.edin()
+						.imleçOluştur(
+							Yükleyici.NESNESİ
+								.glfwResmiYükle(
+									ImageIO
+										.read(
+											UygulamaYükleyicisi.NESNESİ.uygulamaları
+												.get(this)
+												.kaynağınıBul(
+													"resimler/imleç.png"))),
+							0,
+							0));
+		} catch (IOException hata) {
+			hata.printStackTrace();
+		}
 	}
 	
 	private void güncelle() {
