@@ -5,7 +5,9 @@
 package başaşağıderebeyi.deneme;
 
 import başaşağıderebeyi.iskelet.*;
+import başaşağıderebeyi.iskelet.görsel.*;
 import başaşağıderebeyi.iskelet.olaylar.*;
+import başaşağıderebeyi.kütüphane.matematik.sayısal.*;
 import başaşağıderebeyi.kütüphane.olay.*;
 
 /** Baş Aşağı İskelet'i deneyen uygulama. */
@@ -16,23 +18,29 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 0;
 	/** Yaması. */
-	public static final int YAMASI = 0;
+	public static final int YAMASI = 1;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
 	
-	@Dinleyici
-	public void oluşturmaOlayınıDinle(OluşturmaOlayı olay) {
-		
-	}
-	
-	@Dinleyici
-	public void yokEtmeOlayınıDinle(YokEtmeOlayı olay) {
-		
-	}
-	
-	@Dinleyici
-	public void güncellemeOlayınıDinle(GüncellemeOlayı olay) {
-		
+	/** Göstericiyi ve istenen tık oranını sağlar. */
+	public Deneme() {
+		Gösterici
+			.sağla(
+				new Gösterici(
+					1280,
+					720,
+					"Deneme: " + SÜRÜM + " İskelet: " + İskelet.SÜRÜM,
+					false,
+					0,
+					1,
+					new Yöney4(1.0F, 0.0F, 1.0F, 0.0F)));
+		İskelet.NESNESİ.istenenTıkOranınıDeğiştir(10.0);
+		İskelet.NESNESİ
+			.güncellemeOlaylarınınDağıtıcısınıEdin()
+			.dinleyiciyiEkle(
+				new DinleyiciBilgisi<>(
+					OluşturmaOlayı.class,
+					System.out::println));
 	}
 }
