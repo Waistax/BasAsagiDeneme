@@ -27,7 +27,7 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 4;
 	/** Yaması. */
-	public static final int YAMASI = 0;
+	public static final int YAMASI = 1;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -82,6 +82,16 @@ public class Deneme {
 	}
 	
 	private void oluştur() {
+		Gösterici
+			.edin()
+			.imleciDeğiştir(
+				Gösterici
+					.edin()
+					.imleçOluştur(
+						bilgisi.glfwResmiYükle("resimler/imleç.png"),
+						0,
+						0));
+		
 		köşeDizisi = new KöşeDizisi(GL_TRIANGLE_STRIP);
 		
 		köşeDizisi
@@ -150,16 +160,6 @@ public class Deneme {
 		
 		yazar.boyutunuDeğiştir(30.0F);
 		yazar.renginiEdin().bileşenleriniDeğiştir(0.1F, 0.1F, 0.7F, 1.0F);
-		
-		Gösterici
-			.edin()
-			.imleciDeğiştir(
-				Gösterici
-					.edin()
-					.imleçOluştur(
-						bilgisi.glfwResmiYükle("resimler/imleç.png"),
-						0,
-						0));
 	}
 	
 	private void güncelle() {
@@ -199,5 +199,10 @@ public class Deneme {
 				"Kare Oranı: " +
 					İskelet.NESNESİ.karelerininOranınınOrtalamasınıEdin());
 		yazar.çiz();
+	}
+	
+	@Override
+	public String toString() {
+		return "Deneme " + SÜRÜM;
 	}
 }
