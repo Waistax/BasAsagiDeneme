@@ -19,22 +19,20 @@ import başaşağıderebeyi.kütüphane.girdi.*;
 import başaşağıderebeyi.kütüphane.matematik.sayısal.*;
 import başaşağıderebeyi.kütüphane.olay.*;
 
-import java.io.*;
-
-import javax.imageio.*;
-
 /** Baş Aşağı İskelet'i deneyen uygulama. */
 @Uygulama
 public class Deneme {
 	/** Ana sürümü. */
 	public static final int ANA_SÜRÜMÜ = 0;
 	/** Ara sürümü. */
-	public static final int ARA_SÜRÜMÜ = 3;
+	public static final int ARA_SÜRÜMÜ = 4;
 	/** Yaması. */
 	public static final int YAMASI = 0;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
+	
+	private final UygulamaBilgisi bilgisi;
 	
 	private KöşeDizisi köşeDizisi;
 	private int tekerleğinToplamDevri;
@@ -45,7 +43,8 @@ public class Deneme {
 	private DeğişkenYazıGörselleştirici yazar;
 	
 	/** Göstericiyi ve istenen tık oranını sağlar. */
-	public Deneme() {
+	public Deneme(final UygulamaBilgisi bilgisi) {
+		this.bilgisi = bilgisi;
 		Gösterici
 			.sağla(
 				new Gösterici(
@@ -56,6 +55,7 @@ public class Deneme {
 					0,
 					1,
 					new Yöney4(0.2F, 0.0F, 0.2F, 0.0F)));
+		
 		İskelet.NESNESİ.istenenTıkOranınıDeğiştir(10.0);
 		İskelet.NESNESİ
 			.güncellemeOlaylarınınDağıtıcısınıEdin()
@@ -130,40 +130,36 @@ public class Deneme {
 					.put(sağÜstKöşeninRengi.üçüncüBileşeni)
 					.put(sağÜstKöşeninRengi.dördüncüBileşeni));
 		
-		gölgelendiricisi = new Gölgelendirici("renkliDikdörtgen");
+		gölgelendiricisi = bilgisi
+			.gölgelendiriciYükle(
+				"gölgelendiriciler/renkliDikdörtgen.kgöl",
+				"gölgelendiriciler/renkliDikdörtgen.bgöl");
 		gölgelendiricisi.bağla();
 		gölgelendiricisi.değerinKonumunuBul("boyutu");
 		
 		yazar = new DeğişkenYazıGörselleştirici(
 			100,
-			new YazıŞekli("sabitGenişlikliBüyük"),
+			bilgisi
+				.yazıŞekliYükle(
+					"resimler/sabitGenişlikliBüyükYazıŞekli.png",
+					"yazışekilleri/sabitGenişlikliBüyük.yşek"),
 			10.0F,
 			new Dizey4().izdüşümDizeyineÇevir(1280.0F, 720.0F, 20.0F),
-			0.9F);
+			0.9F,
+			gölgelendiricisi);
 		
 		yazar.boyutunuDeğiştir(30.0F);
 		yazar.renginiEdin().bileşenleriniDeğiştir(0.1F, 0.1F, 0.7F, 1.0F);
 		
-		try {
-			Gösterici
-				.edin()
-				.imleciDeğiştir(
-					Gösterici
-						.edin()
-						.imleçOluştur(
-							Yükleyici.NESNESİ
-								.glfwResmiYükle(
-									ImageIO
-										.read(
-											UygulamaYükleyicisi.NESNESİ.uygulamaları
-												.get(this)
-												.kaynağınıBul(
-													"resimler/imleç.png"))),
-							0,
-							0));
-		} catch (IOException hata) {
-			hata.printStackTrace();
-		}
+		Gösterici
+			.edin()
+			.imleciDeğiştir(
+				Gösterici
+					.edin()
+					.imleçOluştur(
+						bilgisi.glfwResmiYükle("resimler/imleç.png"),
+						0,
+						0));
 	}
 	
 	private void güncelle() {

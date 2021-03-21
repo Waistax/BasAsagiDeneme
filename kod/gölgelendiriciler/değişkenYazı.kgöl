@@ -1,0 +1,34 @@
+#version 440
+
+layout (location = 0) in vec4 konumu;
+layout (location = 1) in vec2 dokuKonumu0;
+layout (location = 2) in vec2 dokuKonumu1;
+layout (location = 3) in vec2 dokuKonumu2;
+layout (location = 4) in vec2 dokuKonumu3;
+layout (location = 5) in vec4 rengi;
+layout (location = 6) in mat4 donusumu;
+
+out vec2 beneginDokuKonumu;
+out vec4 beneginRengi;
+
+uniform mat4 izdusumDizeyi;
+
+void main() {
+    gl_Position = izdusumDizeyi * donusumu * konumu;
+    
+//    vec2[4] dokuKonumlari = {
+//    	dokuKonumu0,
+//    	dokuKonumu1,
+//    	dokuKonumu2,
+//    	dokuKonumu3 };
+//    
+//    beneginDokuKonumu = dokuKonumlari[gl_VertexID];
+    
+    switch (gl_VertexID) {
+    	case 0: beneginDokuKonumu = dokuKonumu0; break;
+    	case 1: beneginDokuKonumu = dokuKonumu1; break;
+    	case 2: beneginDokuKonumu = dokuKonumu2; break;
+    	case 3: beneginDokuKonumu = dokuKonumu3; break;
+    };
+    beneginRengi = rengi;
+}
