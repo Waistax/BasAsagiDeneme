@@ -27,7 +27,7 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 4;
 	/** Yaması. */
-	public static final int YAMASI = 2;
+	public static final int YAMASI = 3;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -79,8 +79,6 @@ public class Deneme {
 			.çizimOlaylarınınDağıtıcısınıEdin()
 			.dinleyiciyiEkle(
 				new DinleyiciBilgisi<>(ÇizimOlayı.class, olay -> çiz()));
-		
-		bilgisi.satırlarınıYükle("LICENSE").forEach(System.out::println);
 	}
 	
 	private void oluştur() {
@@ -158,7 +156,10 @@ public class Deneme {
 			10.0F,
 			new Dizey4().izdüşümDizeyineÇevir(1280.0F, 720.0F, 20.0F),
 			0.9F,
-			gölgelendiricisi);
+			bilgisi
+				.gölgelendiriciYükle(
+					"gölgelendiriciler/değişkenYazı.kgöl",
+					"gölgelendiriciler/değişkenYazı.bgöl"));
 		
 		yazar.boyutunuDeğiştir(30.0F);
 		yazar.renginiEdin().bileşenleriniDeğiştir(0.1F, 0.1F, 0.7F, 1.0F);
