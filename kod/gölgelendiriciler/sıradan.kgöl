@@ -29,11 +29,11 @@ void main() {
 	
 	// Bakanin etrafinda cevir.
 	vec3 gorunusKonumu;
-	float dikmeligi = sin(bakisAcisi);
-	float esdikmeligi = cos(bakisAcisi);
+	dikmeligi = sin(bakisAcisi);
+	esdikmeligi = cos(bakisAcisi);
 	gorunusKonumu.x = dunyaKonumu.x * esdikmeligi + dunyaKonumu.y * dikmeligi;
 	gorunusKonumu.y = dunyaKonumu.y * esdikmeligi - dunyaKonumu.x * dikmeligi;
-	gorunusKonumu.z = nesneKonumu.z;
+	gorunusKonumu.z = dunyaKonumu.z;
 
 	// Bakanin konumuna gore tasi ve bakanin merkezinden oranla.
     gl_Position = vec4((gorunusKonumu - bakisKonumu) * bakisBoyutu, 1.0);
