@@ -20,9 +20,9 @@ public class Deneme {
 	/** Ana sürümü. */
 	public static final int ANA_SÜRÜMÜ = 1;
 	/** Ara sürümü. */
-	public static final int ARA_SÜRÜMÜ = 0;
+	public static final int ARA_SÜRÜMÜ = 1;
 	/** Yaması. */
-	public static final int YAMASI = 8;
+	public static final int YAMASI = 0;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -47,7 +47,7 @@ public class Deneme {
 					1,
 					new Yöney3(0.2F, 0.0F, 0.2F)));
 		
-		İskelet.NESNESİ.istenenTıkHızınıDeğiştir(1.0);
+		İskelet.NESNESİ.istenenTıkHızınıDeğiştir(10.0);
 		İskelet.NESNESİ
 			.güncellemeOlaylarınınDağıtıcısınıEdin()
 			.dinleyiciyiEkle(
@@ -99,8 +99,8 @@ public class Deneme {
 	}
 	
 	private void güncelle() {
-		bakışı.güncelle();
-		görüntüsü.dönüşümü.güncelle();
+		bakışı.sakla();
+		görüntüsü.dönüşümü.sakla();
 		
 		final Girdi girdi = İskelet.NESNESİ.girdisiniEdin();
 		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_ESCAPE).salınmasınıEdin())
@@ -139,13 +139,13 @@ public class Deneme {
 		
 		hızı.değiştir(Yöney2.SIFIR);
 		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_I).basılıOlmasınıEdin())
-			hızı.ikinciBileşeni += 0.01;
+			hızı.ikinciBileşeni += 0.1;
 		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_J).basılıOlmasınıEdin())
-			hızı.birinciBileşeni -= 0.01;
+			hızı.birinciBileşeni -= 0.1;
 		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_K).basılıOlmasınıEdin())
-			hızı.ikinciBileşeni -= 0.01;
+			hızı.ikinciBileşeni -= 0.1;
 		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_L).basılıOlmasınıEdin())
-			hızı.birinciBileşeni += 0.01;
+			hızı.birinciBileşeni += 0.1;
 		görüntüsü.dönüşümü.anlıkDönüşümü.boyutu.topla(hızı);
 		
 		açısalHız = 0.0;
