@@ -1,0 +1,14 @@
+#version 440
+
+in vec2 beneginDokuKonumu;
+
+out vec4 beneginRengi;
+
+// Materyal
+uniform sampler2D doku;
+uniform vec4 renk;
+
+void main() {
+	vec4 dokuRengi = texture(doku, beneginDokuKonumu);
+	beneginRengi = dokuRengi * renk;
+}

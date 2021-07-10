@@ -7,4 +7,5 @@
 module başaşağıderebeyi.deneme {
 	requires başaşağıderebeyi.iskelet;
 	requires java.desktop;
+	requires başaşağıderebeyi.kütüphane.matematik.doğrusalcebir;
 }

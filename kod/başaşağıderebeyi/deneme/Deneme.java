@@ -4,43 +4,34 @@
  */
 package başaşağıderebeyi.deneme;
 
-import static başaşağıderebeyi.kütüphane.matematik.MatematikAracı.*;
-import static java.lang.Math.*;
 import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.system.MemoryUtil.*;
 
 import başaşağıderebeyi.iskelet.*;
 import başaşağıderebeyi.iskelet.görsel.*;
-import başaşağıderebeyi.iskelet.görsel.köşedizisi.*;
-import başaşağıderebeyi.iskelet.görsel.yazı.*;
+import başaşağıderebeyi.iskelet.görsel.görüntü.*;
 import başaşağıderebeyi.iskelet.olaylar.*;
 import başaşağıderebeyi.kütüphane.girdi.*;
-import başaşağıderebeyi.kütüphane.matematik.sayısal.*;
+import başaşağıderebeyi.kütüphane.matematik.doğrusalcebir.*;
 import başaşağıderebeyi.kütüphane.olay.*;
 
 /** Baş Aşağı İskelet'i deneyen uygulama. */
 @Uygulama
 public class Deneme {
 	/** Ana sürümü. */
-	public static final int ANA_SÜRÜMÜ = 0;
+	public static final int ANA_SÜRÜMÜ = 1;
 	/** Ara sürümü. */
-	public static final int ARA_SÜRÜMÜ = 4;
+	public static final int ARA_SÜRÜMÜ = 0;
 	/** Yaması. */
-	public static final int YAMASI = 3;
+	public static final int YAMASI = 0;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
 	
 	private final UygulamaBilgisi bilgisi;
 	
-	private KöşeDizisi köşeDizisi;
-	private int tekerleğinToplamDevri;
-	private float boyutu;
-	private float öncekiBoyutu;
-	private float çizilecekBoyutu;
-	private Gölgelendirici gölgelendiricisi;
-	private DeğişkenYazıGörselleştirici yazar;
+	private Görselleştirici görselleştiricisi;
+	private YumuşakBakış bakışı;
+	private Görüntü görüntüsü;
 	
 	/** Göstericiyi ve istenen tık oranını sağlar. */
 	public Deneme(final UygulamaBilgisi bilgisi) {
@@ -54,9 +45,9 @@ public class Deneme {
 					false,
 					0,
 					1,
-					new Yöney4(0.2F, 0.0F, 0.2F, 0.0F)));
+					new Yöney3(0.2F, 0.0F, 0.2F)));
 		
-		İskelet.NESNESİ.istenenTıkOranınıDeğiştir(10.0);
+		İskelet.NESNESİ.istenenTıkHızınıDeğiştir(10.0);
 		İskelet.NESNESİ
 			.güncellemeOlaylarınınDağıtıcısınıEdin()
 			.dinleyiciyiEkle(
@@ -92,116 +83,43 @@ public class Deneme {
 						0,
 						0));
 		
-		köşeDizisi = new KöşeDizisi(GL_TRIANGLE_STRIP);
-		
-		köşeDizisi
-			.durağanKöşeTamponuNesnesiEkle(
-				2,
-				memAllocFloat(8)
-					.put(-0.5F)
-					.put(-0.5F)
-					.put(+0.5F)
-					.put(-0.5F)
-					.put(-0.5F)
-					.put(+0.5F)
-					.put(+0.5F)
-					.put(+0.5F));
-		
-		final Yöney4 solAltKöşeninRengi = new Yöney4(1.0F, 0.0F, 0.0F, 1.0F);
-		final Yöney4 sağAltKöşeninRengi = new Yöney4(0.0F, 0.0F, 1.0F, 1.0F);
-		final Yöney4 solÜstKöşeninRengi = new Yöney4(1.0F, 0.0F, 0.0F, 1.0F);
-		final Yöney4 sağÜstKöşeninRengi = new Yöney4(0.0F, 0.0F, 1.0F, 1.0F);
-		
-		if (true) {
-			solAltKöşeninRengi.rgbdenHsluva();
-			sağAltKöşeninRengi.rgbdenHsluva();
-			solÜstKöşeninRengi.rgbdenHsluva();
-			sağÜstKöşeninRengi.rgbdenHsluva();
-		}
-		
-		köşeDizisi
-			.durağanKöşeTamponuNesnesiEkle(
-				4,
-				memAllocFloat(16)
-					.put(solAltKöşeninRengi.birinciBileşeni)
-					.put(solAltKöşeninRengi.ikinciBileşeni)
-					.put(solAltKöşeninRengi.üçüncüBileşeni)
-					.put(solAltKöşeninRengi.dördüncüBileşeni)
-					.put(sağAltKöşeninRengi.birinciBileşeni)
-					.put(sağAltKöşeninRengi.ikinciBileşeni)
-					.put(sağAltKöşeninRengi.üçüncüBileşeni)
-					.put(sağAltKöşeninRengi.dördüncüBileşeni)
-					.put(solÜstKöşeninRengi.birinciBileşeni)
-					.put(solÜstKöşeninRengi.ikinciBileşeni)
-					.put(solÜstKöşeninRengi.üçüncüBileşeni)
-					.put(solÜstKöşeninRengi.dördüncüBileşeni)
-					.put(sağÜstKöşeninRengi.birinciBileşeni)
-					.put(sağÜstKöşeninRengi.ikinciBileşeni)
-					.put(sağÜstKöşeninRengi.üçüncüBileşeni)
-					.put(sağÜstKöşeninRengi.dördüncüBileşeni));
-		
-		gölgelendiricisi = bilgisi
+		Gölgelendirici gölgelendirici = bilgisi
 			.gölgelendiriciYükle(
-				"gölgelendiriciler/renkliDikdörtgen.kgöl",
-				"gölgelendiriciler/renkliDikdörtgen.bgöl");
-		gölgelendiricisi.bağla();
-		gölgelendiricisi.değerinKonumunuBul("boyutu");
+				"gölgelendiriciler/sıradan.kgöl",
+				"gölgelendiriciler/sıradan.bgöl");
+		İzdüşüm izdüşüm = new İzdüşüm(new Yöney3(10.0, 10.0, 10.0));
+		görselleştiricisi = new Görselleştirici(gölgelendirici, izdüşüm, 1);
 		
-		yazar = new DeğişkenYazıGörselleştirici(
-			100,
-			bilgisi
-				.yazıŞekliYükle(
-					"resimler/sabitGenişlikliBüyükYazıŞekli.png",
-					"yazışekilleri/sabitGenişlikliBüyük.yşek"),
-			10.0F,
-			new Dizey4().izdüşümDizeyineÇevir(1280.0F, 720.0F, 20.0F),
-			0.9F,
-			bilgisi
-				.gölgelendiriciYükle(
-					"gölgelendiriciler/değişkenYazı.kgöl",
-					"gölgelendiriciler/değişkenYazı.bgöl"));
+		bakışı = new YumuşakBakış();
 		
-		yazar.boyutunuDeğiştir(30.0F);
-		yazar.renginiEdin().bileşenleriniDeğiştir(0.1F, 0.1F, 0.7F, 1.0F);
+		Materyal materyal = new Materyal(
+			bilgisi.dokuYükle("resimler/denemeResmi.png"),
+			new Yöney4(Yöney4.BİR));
+		görüntüsü = new Görüntü(materyal);
 	}
 	
 	private void güncelle() {
-		final ÇiğGirdi girdi = İskelet.NESNESİ.girdisiniEdin();
+		final Girdi girdi = İskelet.NESNESİ.girdisiniEdin();
 		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_ESCAPE).salınmasınıEdin())
 			İskelet.NESNESİ.durdur();
-		
-		tekerleğinToplamDevri += girdi.tekerleğininDevri;
-		öncekiBoyutu = boyutu;
-		boyutu = (float)pow(1.05, tekerleğinToplamDevri);
+		bakışı.güncelle();
+		görüntüsü.dönüşümü.güncelle();
 	}
 	
 	private void saniyeyiSay() {
 		System.out
 			.println(
 				"Tık Oranı: " +
-					İskelet.NESNESİ.tıklarınınOranınıEdin() +
+					İskelet.NESNESİ.tıkHızınıEdin() +
 					" Kare Oranı: " +
-					İskelet.NESNESİ.karelerininOranınıEdin());
+					İskelet.NESNESİ.kareHızınıEdin());
 	}
 	
 	private void çiz() {
-		gölgelendiricisi.bağla();
-		çizilecekBoyutu = aradeğerleriniBul(
-			öncekiBoyutu,
-			boyutu,
-			(float)İskelet.NESNESİ.güncellenmemişTıklarınıEdin());
-		
-		gölgelendiricisi.değeriDeğiştir("boyutu", çizilecekBoyutu);
-		köşeDizisi.çiz();
-		gölgelendiricisi.kopar();
-		
-		yazar
-			.yaz(
-				-100.0F,
-				300.0F,
-				"Kare Oranı: " +
-					İskelet.NESNESİ.karelerininOranınınOrtalamasınıEdin());
-		yazar.çiz();
+		bakışı.bul();
+		görüntüsü.dönüşümü.bul();
+		görselleştiricisi.ekle(görüntüsü.dönüşümü.çizilecekDönüşümü);
+		görselleştiricisi.çiz(bakışı.çizilecekBakışı, görüntüsü.materyali);
 	}
 	
 	@Override

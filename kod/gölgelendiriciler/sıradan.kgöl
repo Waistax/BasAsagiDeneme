@@ -1,0 +1,41 @@
+#version 440
+
+layout (location = 0) in vec2 koseKonumu;
+layout (location = 1) in vec2 dokuKonumu;
+layout (location = 2) in vec3 konumu;
+layout (location = 3) in vec2 boyutu;
+layout (location = 4) in float acisi;
+
+out vec2 beneginDokuKonumu;
+
+// Izdusum
+uniform vec3 izdusum;
+
+// Bakis
+uniform vec3 bakisKonumu;
+uniform float bakisBoyutu;
+uniform float bakisAcisi;
+
+void main() {
+	// Kendi merkezi etrafinda cevir.
+	vec2 nesneKonumu;
+	float dikmeligi = sin(acisi);
+	float esdikmeligi = cos(acisi);
+	nesneKonumu.x = koseKonumu.x * esdikmeligi - koseKonumu.y * dikmeligi;
+	nesneKonumu.y = koseKonumu.x * dikmeligi + koseKonumu.y * esdikmeligi;
+
+	// Kendi merkezinden oranla ve konumuna tasi.
+	vec3 dunyaKonumu = konumu + vec3(nesneKonumu * boyutu, 0.0);
+	
+	// Bakanin etrafinda cevir.
+	vec3 gorunusKonumu;
+	float dikmeligi = sin(bakisAcisi);
+	float esdikmeligi = cos(bakisAcisi);
+	gorunusKonumu.x = dunyaKonumu.x * esdikmeligi + dunyaKonumu.y * dikmeligi;
+	gorunusKonumu.y = dunyaKonumu.y * esdikmeligi - dunyaKonumu.x * dikmeligi;
+	gorunusKonumu.z = nesneKonumu.z;
+
+	// Bakanin konumuna gore tasi ve bakanin merkezinden oranla.
+    gl_Position = vec4((gorunusKonumu - bakisKonumu) * bakisBoyutu, 1.0);
+    beneginDokuKonumu = dokuKonumu;
+}
