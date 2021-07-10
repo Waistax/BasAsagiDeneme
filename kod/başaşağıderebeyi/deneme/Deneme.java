@@ -22,7 +22,7 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 0;
 	/** Yaması. */
-	public static final int YAMASI = 7;
+	public static final int YAMASI = 8;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -99,6 +99,9 @@ public class Deneme {
 	}
 	
 	private void güncelle() {
+		bakışı.güncelle();
+		görüntüsü.dönüşümü.güncelle();
+		
 		final Girdi girdi = İskelet.NESNESİ.girdisiniEdin();
 		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_ESCAPE).salınmasınıEdin())
 			İskelet.NESNESİ.durdur();
@@ -151,9 +154,6 @@ public class Deneme {
 		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_O).basılıOlmasınıEdin())
 			açısalHız -= 0.1;
 		görüntüsü.dönüşümü.anlıkDönüşümü.açısı += açısalHız;
-		
-		bakışı.güncelle();
-		görüntüsü.dönüşümü.güncelle();
 	}
 	
 	private void saniyeyiSay() {
