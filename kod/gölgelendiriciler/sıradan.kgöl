@@ -17,15 +17,18 @@ uniform float bakisBoyutu;
 uniform float bakisAcisi;
 
 void main() {
+	// Kendi merkezinden oranla.
+	vec2 olcekliKonumu = koseKonumu * boyutu;
+
 	// Kendi merkezi etrafinda cevir.
 	vec2 nesneKonumu;
 	float dikmeligi = sin(acisi);
 	float esdikmeligi = cos(acisi);
-	nesneKonumu.x = koseKonumu.x * esdikmeligi - koseKonumu.y * dikmeligi;
-	nesneKonumu.y = koseKonumu.x * dikmeligi + koseKonumu.y * esdikmeligi;
+	nesneKonumu.x = olcekliKonumu.x * esdikmeligi - olcekliKonumu.y * dikmeligi;
+	nesneKonumu.y = olcekliKonumu.x * dikmeligi + olcekliKonumu.y * esdikmeligi;
 
 	// Kendi merkezinden oranla ve ekran konumuna tasi.
-	vec3 ekranKonumu = konumu - bakisKonumu + vec3(nesneKonumu * boyutu, 0.0);
+	vec3 ekranKonumu = konumu - bakisKonumu + vec3(nesneKonumu, 0.0);
 	
 	// Bakanin etrafinda cevir.
 	vec3 gorunusKonumu;
