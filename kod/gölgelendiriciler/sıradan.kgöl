@@ -24,18 +24,18 @@ void main() {
 	nesneKonumu.x = koseKonumu.x * esdikmeligi - koseKonumu.y * dikmeligi;
 	nesneKonumu.y = koseKonumu.x * dikmeligi + koseKonumu.y * esdikmeligi;
 
-	// Kendi merkezinden oranla ve konumuna tasi.
-	vec3 dunyaKonumu = konumu + vec3(nesneKonumu * boyutu, 0.0);
+	// Kendi merkezinden oranla ve ekran konumuna tasi.
+	vec3 ekranKonumu = konumu - bakisKonumu + vec3(nesneKonumu * boyutu, 0.0);
 	
 	// Bakanin etrafinda cevir.
 	vec3 gorunusKonumu;
 	dikmeligi = sin(bakisAcisi);
 	esdikmeligi = cos(bakisAcisi);
-	gorunusKonumu.x = dunyaKonumu.x * esdikmeligi + dunyaKonumu.y * dikmeligi;
-	gorunusKonumu.y = dunyaKonumu.y * esdikmeligi - dunyaKonumu.x * dikmeligi;
-	gorunusKonumu.z = dunyaKonumu.z;
+	gorunusKonumu.x = ekranKonumu.x * esdikmeligi + ekranKonumu.y * dikmeligi;
+	gorunusKonumu.y = ekranKonumu.y * esdikmeligi - ekranKonumu.x * dikmeligi;
+	gorunusKonumu.z = ekranKonumu.z;
 
 	// Bakanin konumuna gore tasi ve bakanin merkezinden oranla.
-    gl_Position = vec4((gorunusKonumu - bakisKonumu) * bakisBoyutu / izdusum * 2.0, 1.0);
+    gl_Position = vec4(ekranKonumu * bakisBoyutu / izdusum * 2.0, 1.0);
     beneginDokuKonumu = dokuKonumu;
 }
