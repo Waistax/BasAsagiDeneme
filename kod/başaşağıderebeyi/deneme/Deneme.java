@@ -22,7 +22,7 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 0;
 	/** Yaması. */
-	public static final int YAMASI = 4;
+	public static final int YAMASI = 5;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -116,9 +116,9 @@ public class Deneme {
 		
 		double açısalHız = 0.0;
 		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_Q).basılıOlmasınıEdin())
-			açısalHız += 0.01;
+			açısalHız += 0.1;
 		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_E).basılıOlmasınıEdin())
-			açısalHız -= 0.01;
+			açısalHız -= 0.1;
 		bakışı.anlıkBakışı.açısı += açısalHız;
 		
 		bakışı.anlıkBakışı.boyutu += girdi.tekerleğininDevri * 0.1;
@@ -147,9 +147,9 @@ public class Deneme {
 		
 		açısalHız = 0.0;
 		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_U).basılıOlmasınıEdin())
-			açısalHız += 0.01;
+			açısalHız += 0.1;
 		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_O).basılıOlmasınıEdin())
-			açısalHız -= 0.01;
+			açısalHız -= 0.1;
 		görüntüsü.dönüşümü.anlıkDönüşümü.açısı += açısalHız;
 		
 		bakışı.güncelle();

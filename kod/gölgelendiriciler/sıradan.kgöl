@@ -35,7 +35,7 @@ void main() {
 	gorunusKonumu.y = ekranKonumu.y * esdikmeligi - ekranKonumu.x * dikmeligi;
 	gorunusKonumu.z = ekranKonumu.z;
 
-	// Bakanin konumuna gore tasi ve bakanin merkezinden oranla.
-    gl_Position = vec4(ekranKonumu * bakisBoyutu / izdusum * 2.0, 1.0);
+	// Bakanin merkezinden oranla ve izdusumunu bul.
+    gl_Position = vec4(gorunusKonumu * bakisBoyutu / izdusum * 2.0, 1.0);
     beneginDokuKonumu = dokuKonumu;
 }
