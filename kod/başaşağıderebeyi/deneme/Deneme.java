@@ -22,7 +22,7 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 0;
 	/** Yaması. */
-	public static final int YAMASI = 2;
+	public static final int YAMASI = 3;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -83,16 +83,16 @@ public class Deneme {
 						0,
 						0));
 		
-		Gölgelendirici gölgelendirici = bilgisi
+		final Gölgelendirici gölgelendirici = bilgisi
 			.gölgelendiriciYükle(
 				"gölgelendiriciler/sıradan.kgöl",
 				"gölgelendiriciler/sıradan.bgöl");
-		İzdüşüm izdüşüm = new İzdüşüm(new Yöney3(10.0, 10.0, 10.0));
+		final İzdüşüm izdüşüm = new İzdüşüm(new Yöney3(16.0, 9.0, 10.0));
 		görselleştiricisi = new Görselleştirici(gölgelendirici, izdüşüm, 1);
 		
 		bakışı = new YumuşakBakış();
 		
-		Materyal materyal = new Materyal(
+		final Materyal materyal = new Materyal(
 			bilgisi.dokuYükle("resimler/denemeResmi.png"),
 			new Yöney4(Yöney4.BİR));
 		görüntüsü = new Görüntü(materyal);
@@ -102,6 +102,56 @@ public class Deneme {
 		final Girdi girdi = İskelet.NESNESİ.girdisiniEdin();
 		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_ESCAPE).salınmasınıEdin())
 			İskelet.NESNESİ.durdur();
+		
+		final Yöney2 hızı = new Yöney2();
+		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_W).basılıOlmasınıEdin())
+			hızı.ikinciBileşeni += 0.01;
+		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_A).basılıOlmasınıEdin())
+			hızı.birinciBileşeni -= 0.01;
+		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_S).basılıOlmasınıEdin())
+			hızı.ikinciBileşeni -= 0.01;
+		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_D).basılıOlmasınıEdin())
+			hızı.birinciBileşeni += 0.01;
+		bakışı.anlıkBakışı.konumu.topla(hızı);
+		
+		double açısalHız = 0.0;
+		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_Q).basılıOlmasınıEdin())
+			açısalHız += 0.01;
+		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_E).basılıOlmasınıEdin())
+			açısalHız -= 0.01;
+		bakışı.anlıkBakışı.açısı += açısalHız;
+		
+		bakışı.anlıkBakışı.boyutu += girdi.tekerleğininDevri * 0.1;
+		
+		hızı.değiştir(Yöney2.SIFIR);
+		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_UP).basılıOlmasınıEdin())
+			hızı.ikinciBileşeni += 0.01;
+		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_LEFT).basılıOlmasınıEdin())
+			hızı.birinciBileşeni -= 0.01;
+		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_DOWN).basılıOlmasınıEdin())
+			hızı.ikinciBileşeni -= 0.01;
+		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_RIGHT).basılıOlmasınıEdin())
+			hızı.birinciBileşeni += 0.01;
+		görüntüsü.dönüşümü.anlıkDönüşümü.konumu.topla(hızı);
+		
+		hızı.değiştir(Yöney2.SIFIR);
+		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_I).basılıOlmasınıEdin())
+			hızı.ikinciBileşeni += 0.01;
+		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_J).basılıOlmasınıEdin())
+			hızı.birinciBileşeni -= 0.01;
+		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_K).basılıOlmasınıEdin())
+			hızı.ikinciBileşeni -= 0.01;
+		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_L).basılıOlmasınıEdin())
+			hızı.birinciBileşeni += 0.01;
+		görüntüsü.dönüşümü.anlıkDönüşümü.boyutu.topla(hızı);
+		
+		açısalHız = 0.0;
+		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_U).basılıOlmasınıEdin())
+			açısalHız += 0.01;
+		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_O).basılıOlmasınıEdin())
+			açısalHız -= 0.01;
+		görüntüsü.dönüşümü.anlıkDönüşümü.açısı += açısalHız;
+		
 		bakışı.güncelle();
 		görüntüsü.dönüşümü.güncelle();
 	}
