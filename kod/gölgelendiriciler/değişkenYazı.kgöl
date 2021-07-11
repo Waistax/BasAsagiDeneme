@@ -1,34 +1,57 @@
 #version 440
 
-layout (location = 0) in vec4 konumu;
-layout (location = 1) in vec2 dokuKonumu0;
-layout (location = 2) in vec2 dokuKonumu1;
-layout (location = 3) in vec2 dokuKonumu2;
-layout (location = 4) in vec2 dokuKonumu3;
-layout (location = 5) in vec4 rengi;
-layout (location = 6) in mat4 donusumu;
+// Model
+layout (location = 0) in vec4 nitelikKoseKonumu;
+layout (location = 1) in vec2 nitelikDokuKonumu0;
+layout (location = 2) in vec2 nitelikDokuKonumu1;
+layout (location = 3) in vec2 nitelikDokuKonumu2;
+layout (location = 4) in vec2 nitelikDokuKonumu3;
+
+// Donusum
+layout (location = 5) in vec3 nitelikKonumu;
+layout (location = 6) in vec2 nitelikBoyutu;
+layout (location = 7) in float nitelikAcisi;
 
 out vec2 beneginDokuKonumu;
-out vec4 beneginRengi;
 
-uniform mat4 izdusumDizeyi;
+// Izdusum
+uniform vec3 izdusum;
+
+// Bakis
+uniform vec3 bakisKonumu;
+uniform float bakisBoyutu;
+uniform float bakisAcisi;
 
 void main() {
-    gl_Position = izdusumDizeyi * donusumu * konumu;
+	// Kendi merkezinden oranla.
+	vec2 olcekliKonumu = nitelikKoseKonumu * nitelikBoyutu;
+
+	// Kendi merkezi etrafinda cevir.
+	vec2 nesneKonumu;
+	float dikmeligi = sin(nitelikAcisi);
+	float esdikmeligi = cos(nitelikAcisi);
+	nesneKonumu.x = olcekliKonumu.x * esdikmeligi - olcekliKonumu.y * dikmeligi;
+	nesneKonumu.y = olcekliKonumu.x * dikmeligi + olcekliKonumu.y * esdikmeligi;
+
+	// Kendi merkezinden oranla ve ekran konumuna tasi.
+	vec3 ekranKonumu = nitelikKonumu - bakisKonumu + vec3(nesneKonumu, 0.0);
+	
+	// Bakanin etrafinda cevir.
+	vec3 gorunusKonumu;
+	dikmeligi = sin(bakisAcisi);
+	esdikmeligi = cos(bakisAcisi);
+	gorunusKonumu.x = ekranKonumu.x * esdikmeligi + ekranKonumu.y * dikmeligi;
+	gorunusKonumu.y = ekranKonumu.y * esdikmeligi - ekranKonumu.x * dikmeligi;
+	gorunusKonumu.z = ekranKonumu.z;
+
+	// Bakanin merkezinden oranla ve izdusumunu bul.
+    gl_Position = vec4(gorunusKonumu * bakisBoyutu / izdusum * 2.0, 1.0);
     
-//    vec2[4] dokuKonumlari = {
-//    	dokuKonumu0,
-//    	dokuKonumu1,
-//    	dokuKonumu2,
-//    	dokuKonumu3 };
-//    
-//    beneginDokuKonumu = dokuKonumlari[gl_VertexID];
-    
+    // Doku konumunu aktar.
     switch (gl_VertexID) {
-    	case 0: beneginDokuKonumu = dokuKonumu0; break;
-    	case 1: beneginDokuKonumu = dokuKonumu1; break;
-    	case 2: beneginDokuKonumu = dokuKonumu2; break;
-    	case 3: beneginDokuKonumu = dokuKonumu3; break;
+    	case 0: beneginDokuKonumu = nitelikDokuKonumu0; break;
+    	case 1: beneginDokuKonumu = nitelikDokuKonumu1; break;
+    	case 2: beneginDokuKonumu = nitelikDokuKonumu2; break;
+    	case 3: beneginDokuKonumu = nitelikDokuKonumu3; break;
     };
-    beneginRengi = rengi;
 }

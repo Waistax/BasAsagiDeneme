@@ -1,17 +1,15 @@
 #version 440
 
 in vec2 beneginDokuKonumu;
-in vec4 beneginRengi;
 
-out vec4 beneginCizilecegiRenk;
+out vec4 beneginRengi;
 
+// Materyal
 uniform sampler2D doku;
-uniform float saydamlikEsigi;
+uniform vec3 renk;
+uniform vec3 tersRenk;
 
 void main() {
-	float saydamligi = texture(doku, beneginDokuKonumu).a;
-	if (saydamligi > saydamlikEsigi)
-		beneginCizilecegiRenk = vec4(beneginRengi.rgb, beneginRengi.a * saydamligi);
-	else
-		discard;
+	vec4 dokuRengi = texture(doku, beneginDokuKonumu);
+	beneginRengi = dokuRengi * vec4(tersRenk + (renk - tersRenk) * dokuRengi.a, 1.0);
 }
