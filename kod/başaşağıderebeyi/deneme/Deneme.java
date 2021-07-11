@@ -20,9 +20,9 @@ public class Deneme {
 	/** Ana sürümü. */
 	public static final int ANA_SÜRÜMÜ = 1;
 	/** Ara sürümü. */
-	public static final int ARA_SÜRÜMÜ = 1;
+	public static final int ARA_SÜRÜMÜ = 2;
 	/** Yaması. */
-	public static final int YAMASI = 10;
+	public static final int YAMASI = 0;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
