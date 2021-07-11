@@ -1,7 +1,7 @@
 #version 440
 
 // Model
-layout (location = 0) in vec4 nitelikKoseKonumu;
+layout (location = 0) in vec2 nitelikKoseKonumu;
 layout (location = 1) in vec2 nitelikDokuKonumu0;
 layout (location = 2) in vec2 nitelikDokuKonumu1;
 layout (location = 3) in vec2 nitelikDokuKonumu2;
