@@ -11,5 +11,5 @@ uniform vec3 tersRenk;
 
 void main() {
 	vec4 dokuRengi = texture(doku, beneginDokuKonumu);
-	beneginRengi = dokuRengi * vec4(tersRenk + (renk - tersRenk) * dokuRengi.a, 1);
+	beneginRengi = dokuRengi * vec4(tersRenk + (renk - tersRenk) * dokuRengi.a, 1.0);
 }

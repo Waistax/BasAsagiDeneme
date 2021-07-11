@@ -22,7 +22,7 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 1;
 	/** Yaması. */
-	public static final int YAMASI = 4;
+	public static final int YAMASI = 5;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -95,7 +95,7 @@ public class Deneme {
 		final Materyal materyal = new Materyal(
 			bilgisi.dokuYükle("resimler/denemeResmi.png"),
 			new Yöney3(Yöney3.BİR),
-			new Yöney3());
+			new Yöney3(Yöney3.BİRİNCİ_EKSEN));
 		görüntüsü = new Yumuşatıcı<Görüntü>(
 			new Görüntü(materyal),
 			new Görüntü(materyal),
