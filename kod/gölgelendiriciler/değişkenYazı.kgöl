@@ -42,11 +42,14 @@ void main() {
 	esdikmeligi = cos(bakisAcisi);
 	gorunusKonumu.x = ekranKonumu.x * esdikmeligi + ekranKonumu.y * dikmeligi;
 	gorunusKonumu.y = ekranKonumu.y * esdikmeligi - ekranKonumu.x * dikmeligi;
+
+	// Bakanin merkezinden oranla.
+	gorunusKonumu *= bakisBoyutu;
 	gorunusKonumu.z = ekranKonumu.z;
 
-	// Bakanin merkezinden oranla ve izdusumunu bul.
-    gl_Position = vec4(gorunusKonumu * bakisBoyutu / izdusum * 2.0, 1.0);
-    
+	// Izdusumunu bul.
+    gl_Position = vec4(gorunusKonumu / izdusum * 2.0, 1.0);
+	
     // Doku konumunu aktar.
     switch (gl_VertexID) {
     	case 0: beneginDokuKonumu = nitelikDokuKonumu0; break;
