@@ -22,7 +22,7 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 1;
 	/** Yaması. */
-	public static final int YAMASI = 0;
+	public static final int YAMASI = 1;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -168,6 +168,8 @@ public class Deneme {
 	private void çiz() {
 		bakışı.bul();
 		görüntüsü.dönüşümü.bul();
+		görüntüsü.materyali.rengi
+			.değiştir(görüntüsü.dönüşümü.çizilecekDönüşümü.konumu);
 		görselleştiricisi.ekle(görüntüsü.dönüşümü.çizilecekDönüşümü);
 		görselleştiricisi.çiz(bakışı.çizilecekBakışı, görüntüsü.materyali);
 	}
