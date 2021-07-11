@@ -9,8 +9,10 @@ import static org.lwjgl.glfw.GLFW.*;
 import başaşağıderebeyi.iskelet.*;
 import başaşağıderebeyi.iskelet.görsel.*;
 import başaşağıderebeyi.iskelet.görsel.görüntü.*;
+import başaşağıderebeyi.iskelet.görsel.yazı.*;
 import başaşağıderebeyi.iskelet.olaylar.*;
 import başaşağıderebeyi.kütüphane.girdi.*;
+import başaşağıderebeyi.kütüphane.günlük.*;
 import başaşağıderebeyi.kütüphane.matematik.doğrusalcebir.*;
 import başaşağıderebeyi.kütüphane.olay.*;
 
@@ -22,7 +24,7 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 2;
 	/** Yaması. */
-	public static final int YAMASI = 1;
+	public static final int YAMASI = 2;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -34,6 +36,7 @@ public class Deneme {
 	private Görselleştirici görselleştiricisi;
 	private Yumuşatıcı<Bakış> bakışı;
 	private Yumuşatıcı<Görüntü> görüntüsü;
+	private DeğişkenYazıGörselleştirici değişYazıGörselleştirici;
 	
 	/** Göstericiyi ve istenen tık oranını sağlar. */
 	public Deneme(final UygulamaBilgisi bilgisi) {
@@ -47,7 +50,7 @@ public class Deneme {
 					false,
 					0,
 					1,
-					new Yöney3(0.2F, 0.0F, 0.2F)));
+					new Yöney3(0.2, 0.0, 0.2)));
 		
 		İskelet.NESNESİ.istenenTıkHızınıDeğiştir(10.0);
 		İskelet.NESNESİ
@@ -109,6 +112,23 @@ public class Deneme {
 				new Materyal(materyal.dokusu, new Yöney3(), new Yöney3())),
 			new Görüntü(
 				new Materyal(materyal.dokusu, new Yöney3(), new Yöney3())));
+		
+		final Gölgelendirici yazıGölgelendiricisi = bilgisi
+			.gölgelendiriciYükle(
+				"gölgelendiriciler/değişkenYazı.kgöl",
+				"gölgelendiriciler/değişkenYazı.bgöl");
+		
+		final YazıŞekli yazıŞekli = bilgisi
+			.yazıŞekliYükle(
+				"resimler/sabitGenişlikliBüyükYazıŞekli.png",
+				"yazışekilleri/sabitGenişlikliBüyük.yşek");
+		
+		değişYazıGörselleştirici = new DeğişkenYazıGörselleştirici(
+			yazıGölgelendiricisi,
+			izdüşüm,
+			100,
+			yazıŞekli,
+			10.0);
 	}
 	
 	private void güncelle() {
@@ -179,8 +199,8 @@ public class Deneme {
 	}
 	
 	private void saniyeyiSay() {
-		System.out
-			.println(
+		SistemGünlüğü.KONSOL
+			.yaz(
 				"Tık Oranı: " +
 					İskelet.NESNESİ.tıkHızınıEdin() +
 					" Kare Oranı: " +
@@ -193,6 +213,8 @@ public class Deneme {
 		görselleştiricisi.ekle(görüntüsü.yumuşatılmışı.dönüşümü);
 		görselleştiricisi
 			.çiz(bakışı.yumuşatılmışı, görüntüsü.yumuşatılmışı.materyali);
+		
+		değişYazıGörselleştirici.yaz(0.0, 0.0, "Merhaba Dünya!");
 	}
 	
 	@Override
