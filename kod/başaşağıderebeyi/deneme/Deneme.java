@@ -24,7 +24,7 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 2;
 	/** Yaması. */
-	public static final int YAMASI = 4;
+	public static final int YAMASI = 5;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -36,7 +36,7 @@ public class Deneme {
 	private Görselleştirici görselleştiricisi;
 	private Yumuşatıcı<Bakış> bakışı;
 	private Yumuşatıcı<Görüntü> görüntüsü;
-	private DeğişkenYazıGörselleştirici değişYazıGörselleştirici;
+	private DeğişkenYazıGörselleştirici değişkenYazıGörselleştirici;
 	
 	/** Göstericiyi ve istenen tık oranını sağlar. */
 	public Deneme(final UygulamaBilgisi bilgisi) {
@@ -123,12 +123,13 @@ public class Deneme {
 				"resimler/sabitGenişlikliBüyükYazıŞekli.png",
 				"yazışekilleri/sabitGenişlikliBüyük.yşek");
 		
-		değişYazıGörselleştirici = new DeğişkenYazıGörselleştirici(
+		değişkenYazıGörselleştirici = new DeğişkenYazıGörselleştirici(
 			yazıGölgelendiricisi,
 			izdüşüm,
 			100,
 			yazıŞekli,
 			10.0);
+		değişkenYazıGörselleştirici.boyutunuDeğiştir(0.9);
 	}
 	
 	private void güncelle() {
@@ -214,8 +215,8 @@ public class Deneme {
 		görselleştiricisi
 			.çiz(bakışı.yumuşatılmışı, görüntüsü.yumuşatılmışı.materyali);
 		
-		değişYazıGörselleştirici.yaz(0.0, 0.0, "Merhaba Dünya!");
-		değişYazıGörselleştirici.çiz(bakışı.yumuşatılmışı);
+		değişkenYazıGörselleştirici.yaz(0.0, 0.0, "Merhaba Dünya!");
+		değişkenYazıGörselleştirici.çiz(bakışı.yumuşatılmışı);
 	}
 	
 	@Override
