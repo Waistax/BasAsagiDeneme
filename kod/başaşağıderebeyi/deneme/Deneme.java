@@ -5,6 +5,7 @@
 package başaşağıderebeyi.deneme;
 
 import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.GL11.*;
 
 import başaşağıderebeyi.iskelet.*;
 import başaşağıderebeyi.iskelet.görsel.*;
@@ -24,7 +25,7 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 2;
 	/** Yaması. */
-	public static final int YAMASI = 6;
+	public static final int YAMASI = 7;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -48,7 +49,7 @@ public class Deneme {
 					720,
 					"Deneme: " + SÜRÜM + " İskelet: " + İskelet.SÜRÜM,
 					false,
-					0,
+					16,
 					1,
 					new Yöney3(0.2, 0.0, 0.2)));
 		
@@ -121,6 +122,8 @@ public class Deneme {
 		final YazıŞekli yazıŞekli = bilgisi
 			.yazıŞekliYükle(
 				"resimler/sabitGenişlikliBüyükYazıŞekli.png",
+				GL_LINEAR_MIPMAP_LINEAR,
+				GL_NEAREST,
 				"yazışekilleri/sabitGenişlikliBüyük.yşek");
 		
 		değişkenYazıGörselleştirici = new DeğişkenYazıGörselleştirici(
