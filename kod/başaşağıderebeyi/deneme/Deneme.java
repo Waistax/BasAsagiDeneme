@@ -24,7 +24,7 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 2;
 	/** Yaması. */
-	public static final int YAMASI = 5;
+	public static final int YAMASI = 6;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -104,14 +104,14 @@ public class Deneme {
 		
 		final Materyal materyal = new Materyal(
 			dokular[dokuİmleci],
-			new Yöney3(Yöney3.BİR),
-			new Yöney3());
+			new Yöney4(Yöney4.BİR),
+			new Yöney4());
 		görüntüsü = new Yumuşatıcı<>(
 			new Görüntü(materyal),
 			new Görüntü(
-				new Materyal(materyal.dokusu, new Yöney3(), new Yöney3())),
+				new Materyal(materyal.dokusu, new Yöney4(), new Yöney4())),
 			new Görüntü(
-				new Materyal(materyal.dokusu, new Yöney3(), new Yöney3())));
+				new Materyal(materyal.dokusu, new Yöney4(), new Yöney4())));
 		
 		final Gölgelendirici yazıGölgelendiricisi = bilgisi
 			.gölgelendiriciYükle(
@@ -191,7 +191,8 @@ public class Deneme {
 		
 		görüntüsü.anlığı.materyali.rengi
 			.değiştir(görüntüsü.anlığı.dönüşümü.konumu)
-			.üçüncüBileşeniniDeğiştir(bakışı.anlığı.boyutu);
+			.üçüncüBileşeniniDeğiştir(bakışı.anlığı.boyutu)
+			.dördüncüBileşeniniDeğiştir(1.0);
 		
 		if (girdi.faresininTuşunuEdin(GLFW_MOUSE_BUTTON_1).basılmasınıEdin()) {
 			dokuİmleci = ++dokuİmleci % dokular.length;
