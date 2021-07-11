@@ -24,7 +24,7 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 2;
 	/** Yaması. */
-	public static final int YAMASI = 3;
+	public static final int YAMASI = 4;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -215,6 +215,7 @@ public class Deneme {
 			.çiz(bakışı.yumuşatılmışı, görüntüsü.yumuşatılmışı.materyali);
 		
 		değişYazıGörselleştirici.yaz(0.0, 0.0, "Merhaba Dünya!");
+		değişYazıGörselleştirici.çiz(bakışı.yumuşatılmışı);
 	}
 	
 	@Override
