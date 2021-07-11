@@ -25,7 +25,7 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 2;
 	/** Yaması. */
-	public static final int YAMASI = 7;
+	public static final int YAMASI = 8;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -106,7 +106,7 @@ public class Deneme {
 		final Materyal materyal = new Materyal(
 			dokular[dokuİmleci],
 			new Yöney4(Yöney4.BİR),
-			new Yöney4());
+			new Yöney4(1.0, 1.0, 1.0, 0.2));
 		görüntüsü = new Yumuşatıcı<>(
 			new Görüntü(materyal),
 			new Görüntü(
@@ -132,6 +132,12 @@ public class Deneme {
 			100,
 			yazıŞekli,
 			10.0);
+		değişkenYazıGörselleştirici
+			.renginiEdin()
+			.bileşenleriniDeğiştir(0.9, 0.1, 0.2, 1.0);
+		değişkenYazıGörselleştirici
+			.zeminininRenginiEdin()
+			.bileşenleriniDeğiştir(0.0, 0.0, 0.0, 0.5);
 		değişkenYazıGörselleştirici.boyutunuDeğiştir(0.9);
 	}
 	
@@ -219,7 +225,7 @@ public class Deneme {
 		görselleştiricisi
 			.çiz(bakışı.yumuşatılmışı, görüntüsü.yumuşatılmışı.materyali);
 		
-		değişkenYazıGörselleştirici.yaz(0.0, 0.0, "Merhaba Dünya!");
+		değişkenYazıGörselleştirici.yaz(0.0, 0.0, 5.0, "Merhaba Dünya!");
 		değişkenYazıGörselleştirici.çiz(bakışı.yumuşatılmışı);
 	}
 	
