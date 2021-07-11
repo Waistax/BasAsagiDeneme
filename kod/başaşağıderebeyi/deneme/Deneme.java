@@ -22,13 +22,15 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 1;
 	/** Yaması. */
-	public static final int YAMASI = 9;
+	public static final int YAMASI = 10;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
 	
 	private final UygulamaBilgisi bilgisi;
 	
+	private int[] dokular;
+	private int dokuİmleci;
 	private Görselleştirici görselleştiricisi;
 	private Yumuşatıcı<Bakış> bakışı;
 	private Yumuşatıcı<Görüntü> görüntüsü;
@@ -92,10 +94,15 @@ public class Deneme {
 		
 		bakışı = new Yumuşatıcı<>(new Bakış(), new Bakış(), new Bakış());
 		
-		final Materyal materyal = new Materyal(
+		dokular = new int[] {
 			bilgisi.dokuYükle("resimler/denemeResmi.png"),
+			bilgisi.dokuYükle("resimler/tersDenemeResmi.png"),
+			bilgisi.dokuYükle("resimler/sabitGenişlikliBüyükYazıŞekli.png") };
+		
+		final Materyal materyal = new Materyal(
+			dokular[dokuİmleci],
 			new Yöney3(Yöney3.BİR),
-			new Yöney3(Yöney3.BİRİNCİ_EKSEN));
+			new Yöney3());
 		görüntüsü = new Yumuşatıcı<>(
 			new Görüntü(materyal),
 			new Görüntü(
@@ -162,7 +169,13 @@ public class Deneme {
 		görüntüsü.anlığı.dönüşümü.açısı += açısalHız;
 		
 		görüntüsü.anlığı.materyali.rengi
-			.değiştir(görüntüsü.anlığı.dönüşümü.konumu);
+			.değiştir(görüntüsü.anlığı.dönüşümü.konumu)
+			.üçüncüBileşeniniDeğiştir(bakışı.anlığı.boyutu);
+		
+		if (girdi.faresininTuşunuEdin(GLFW_MOUSE_BUTTON_1).basılmasınıEdin()) {
+			dokuİmleci = ++dokuİmleci % dokular.length;
+			görüntüsü.anlığı.materyali.dokusu = dokular[dokuİmleci];
+		}
 	}
 	
 	private void saniyeyiSay() {
