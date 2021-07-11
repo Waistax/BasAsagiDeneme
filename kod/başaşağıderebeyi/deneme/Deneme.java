@@ -22,7 +22,7 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 1;
 	/** Yaması. */
-	public static final int YAMASI = 1;
+	public static final int YAMASI = 2;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -169,7 +169,8 @@ public class Deneme {
 		bakışı.bul();
 		görüntüsü.dönüşümü.bul();
 		görüntüsü.materyali.rengi
-			.değiştir(görüntüsü.dönüşümü.çizilecekDönüşümü.konumu);
+			.değiştir(görüntüsü.dönüşümü.çizilecekDönüşümü.konumu)
+			.dördüncüBileşeniniDeğiştir(1.0);
 		görselleştiricisi.ekle(görüntüsü.dönüşümü.çizilecekDönüşümü);
 		görselleştiricisi.çiz(bakışı.çizilecekBakışı, görüntüsü.materyali);
 	}
