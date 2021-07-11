@@ -22,7 +22,7 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 1;
 	/** Yaması. */
-	public static final int YAMASI = 2;
+	public static final int YAMASI = 3;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -30,8 +30,8 @@ public class Deneme {
 	private final UygulamaBilgisi bilgisi;
 	
 	private Görselleştirici görselleştiricisi;
-	private YumuşakBakış bakışı;
-	private Görüntü görüntüsü;
+	private Yumuşatıcı<Bakış> bakışı;
+	private Yumuşatıcı<Görüntü> görüntüsü;
 	
 	/** Göstericiyi ve istenen tık oranını sağlar. */
 	public Deneme(final UygulamaBilgisi bilgisi) {
@@ -90,17 +90,21 @@ public class Deneme {
 		final İzdüşüm izdüşüm = new İzdüşüm(new Yöney3(16.0, 9.0, 10.0));
 		görselleştiricisi = new Görselleştirici(gölgelendirici, izdüşüm, 1);
 		
-		bakışı = new YumuşakBakış();
+		bakışı = new Yumuşatıcı<Bakış>(new Bakış(), new Bakış(), new Bakış());
 		
 		final Materyal materyal = new Materyal(
 			bilgisi.dokuYükle("resimler/denemeResmi.png"),
-			new Yöney4(Yöney4.BİR));
-		görüntüsü = new Görüntü(materyal);
+			new Yöney3(Yöney3.BİR),
+			new Yöney3());
+		görüntüsü = new Yumuşatıcı<Görüntü>(
+			new Görüntü(materyal),
+			new Görüntü(materyal),
+			new Görüntü(materyal));
 	}
 	
 	private void güncelle() {
 		bakışı.sakla();
-		görüntüsü.dönüşümü.sakla();
+		görüntüsü.sakla();
 		
 		final Girdi girdi = İskelet.NESNESİ.girdisiniEdin();
 		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_ESCAPE).salınmasınıEdin())
@@ -115,16 +119,16 @@ public class Deneme {
 			hızı.ikinciBileşeni -= 0.1;
 		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_D).basılıOlmasınıEdin())
 			hızı.birinciBileşeni += 0.1;
-		bakışı.anlıkBakışı.konumu.topla(hızı);
+		bakışı.anlığı.konumu.topla(hızı);
 		
 		double açısalHız = 0.0;
 		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_Q).basılıOlmasınıEdin())
 			açısalHız += 0.1;
 		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_E).basılıOlmasınıEdin())
 			açısalHız -= 0.1;
-		bakışı.anlıkBakışı.açısı += açısalHız;
+		bakışı.anlığı.açısı += açısalHız;
 		
-		bakışı.anlıkBakışı.boyutu += girdi.tekerleğininDevri * 0.1;
+		bakışı.anlığı.boyutu += girdi.tekerleğininDevri * 0.1;
 		
 		hızı.değiştir(Yöney2.SIFIR);
 		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_UP).basılıOlmasınıEdin())
@@ -135,7 +139,7 @@ public class Deneme {
 			hızı.ikinciBileşeni -= 0.1;
 		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_RIGHT).basılıOlmasınıEdin())
 			hızı.birinciBileşeni += 0.1;
-		görüntüsü.dönüşümü.anlıkDönüşümü.konumu.topla(hızı);
+		görüntüsü.anlığı.dönüşümü.konumu.topla(hızı);
 		
 		hızı.değiştir(Yöney2.SIFIR);
 		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_I).basılıOlmasınıEdin())
@@ -146,14 +150,17 @@ public class Deneme {
 			hızı.ikinciBileşeni -= 0.1;
 		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_L).basılıOlmasınıEdin())
 			hızı.birinciBileşeni += 0.1;
-		görüntüsü.dönüşümü.anlıkDönüşümü.boyutu.topla(hızı);
+		görüntüsü.anlığı.dönüşümü.boyutu.topla(hızı);
 		
 		açısalHız = 0.0;
 		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_U).basılıOlmasınıEdin())
 			açısalHız += 0.1;
 		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_O).basılıOlmasınıEdin())
 			açısalHız -= 0.1;
-		görüntüsü.dönüşümü.anlıkDönüşümü.açısı += açısalHız;
+		görüntüsü.anlığı.dönüşümü.açısı += açısalHız;
+		
+		görüntüsü.anlığı.materyali.rengi
+			.değiştir(görüntüsü.anlığı.dönüşümü.konumu);
 	}
 	
 	private void saniyeyiSay() {
@@ -167,12 +174,10 @@ public class Deneme {
 	
 	private void çiz() {
 		bakışı.bul();
-		görüntüsü.dönüşümü.bul();
-		görüntüsü.materyali.rengi
-			.değiştir(görüntüsü.dönüşümü.çizilecekDönüşümü.konumu)
-			.dördüncüBileşeniniDeğiştir(1.0);
-		görselleştiricisi.ekle(görüntüsü.dönüşümü.çizilecekDönüşümü);
-		görselleştiricisi.çiz(bakışı.çizilecekBakışı, görüntüsü.materyali);
+		görüntüsü.bul();
+		görselleştiricisi.ekle(görüntüsü.yumuşatılmışı.dönüşümü);
+		görselleştiricisi
+			.çiz(bakışı.yumuşatılmışı, görüntüsü.yumuşatılmışı.materyali);
 	}
 	
 	@Override

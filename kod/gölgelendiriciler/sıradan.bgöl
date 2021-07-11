@@ -6,9 +6,10 @@ out vec4 beneginRengi;
 
 // Materyal
 uniform sampler2D doku;
-uniform vec4 renk;
+uniform vec3 renk;
+uniform vec3 tersRenk;
 
 void main() {
 	vec4 dokuRengi = texture(doku, beneginDokuKonumu);
-	beneginRengi = dokuRengi * renk;
+	beneginRengi = dokuRengi * vec4(renk + (tersRenk - renk) * dokuRengi.a, 1);
 }
