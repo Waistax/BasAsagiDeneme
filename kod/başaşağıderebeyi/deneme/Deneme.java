@@ -25,7 +25,7 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 2;
 	/** Yaması. */
-	public static final int YAMASI = 14;
+	public static final int YAMASI = 15;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -131,7 +131,7 @@ public class Deneme {
 			yazıGölgelendiricisi,
 			izdüşüm,
 			100,
-			45.0);
+			0.0);
 		değişkenYazıGörselleştirici.materyali.rengi
 			.bileşenleriniDeğiştir(0.9, 0.1, 0.2, 1.0);
 		değişkenYazıGörselleştirici.materyali.tabanınınRengi
