@@ -25,7 +25,7 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 2;
 	/** Yaması. */
-	public static final int YAMASI = 12;
+	public static final int YAMASI = 13;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -225,13 +225,15 @@ public class Deneme {
 		
 		değişkenYazıGörselleştirici.yaz(0.0, 0.0, -1.0, "Merhaba Dünya!");
 		değişkenYazıGörselleştirici
-			.ortalıYaz(
-				0.0,
-				1.0,
-				-1.0,
-				"ORTALI YUKARIDA TAMAMEN BÜYÜK HARF BİR YAZI.");
+			.ortalıYaz(0.0, 1.0, -1.0, "ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZQWX");
 		değişkenYazıGörselleştirici
-			.tamOrtayaYaz(0.0, -1.0, -1.0, "Tam", "Ortaya", "Yazı");
+			.tamOrtayaYaz(
+				0.0,
+				-1.0,
+				-1.0,
+				"abcçdefgğhıijklm",
+				"noöprsştuüvyzqwx",
+				"0123456789");
 		değişkenYazıGörselleştirici.çiz(bakışı.yumuşatılmışı);
 	}
 	
