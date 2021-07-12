@@ -7,9 +7,9 @@ out vec4 beneginRengi;
 // Materyal
 uniform sampler2D doku;
 uniform vec4 renk;
-uniform vec4 zeminRengi;
+uniform vec4 tabanRengi;
 
 void main() {
 	vec4 dokuRengi = texture(doku, beneginDokuKonumu);
-	beneginRengi = dokuRengi.a > 0.0 ? dokuRengi * renk : zeminRengi;
+	beneginRengi = dokuRengi.a > 0.0 ? dokuRengi * renk : tabanRengi;
 }
