@@ -2,15 +2,12 @@
 
 // Model
 layout (location = 0) in vec2 nitelikKoseKonumu;
-layout (location = 1) in vec2 nitelikDokuKonumu0;
-layout (location = 2) in vec2 nitelikDokuKonumu1;
-layout (location = 3) in vec2 nitelikDokuKonumu2;
-layout (location = 4) in vec2 nitelikDokuKonumu3;
+layout (location = 1) in vec4 nitelikDokuKonumu;
 
 // Donusum
-layout (location = 5) in vec3 nitelikKonumu;
-layout (location = 6) in vec2 nitelikBoyutu;
-layout (location = 7) in float nitelikAcisi;
+layout (location = 2) in vec3 nitelikKonumu;
+layout (location = 3) in vec2 nitelikBoyutu;
+layout (location = 4) in float nitelikAcisi;
 
 out vec2 beneginDokuKonumu;
 
@@ -52,9 +49,9 @@ void main() {
 	
     // Doku konumunu aktar.
     switch (gl_VertexID) {
-    	case 0: beneginDokuKonumu = nitelikDokuKonumu0; break;
-    	case 1: beneginDokuKonumu = nitelikDokuKonumu1; break;
-    	case 2: beneginDokuKonumu = nitelikDokuKonumu2; break;
-    	case 3: beneginDokuKonumu = nitelikDokuKonumu3; break;
+    	case 0: beneginDokuKonumu = nitelikDokuKonumu.xw; break;
+    	case 1: beneginDokuKonumu = nitelikDokuKonumu.yw; break;
+    	case 2: beneginDokuKonumu = nitelikDokuKonumu.xz; break;
+    	case 3: beneginDokuKonumu = nitelikDokuKonumu.yz; break;
     };
 }

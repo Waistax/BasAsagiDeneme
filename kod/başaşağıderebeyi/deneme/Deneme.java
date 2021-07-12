@@ -25,7 +25,7 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 2;
 	/** Yaması. */
-	public static final int YAMASI = 10;
+	public static final int YAMASI = 11;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -121,22 +121,20 @@ public class Deneme {
 		
 		final YazıŞekli yazıŞekli = bilgisi
 			.yazıŞekliYükle(
-				"resimler/sabitGenişlikliBüyükYazıŞekli.png",
+				"resimler/verdana12.png",
 				GL_LINEAR_MIPMAP_LINEAR,
 				GL_NEAREST,
-				"yazışekilleri/sabitGenişlikliBüyük.yşek");
+				"yazışekilleri/verdana12.yşek");
 		
 		değişkenYazıGörselleştirici = new DeğişkenYazıGörselleştirici(
+			yazıŞekli,
 			yazıGölgelendiricisi,
 			izdüşüm,
 			100,
-			yazıŞekli,
 			10.0);
-		değişkenYazıGörselleştirici
-			.renginiEdin()
+		değişkenYazıGörselleştirici.materyali.rengi
 			.bileşenleriniDeğiştir(0.9, 0.1, 0.2, 1.0);
-		değişkenYazıGörselleştirici
-			.zeminininRenginiEdin()
+		değişkenYazıGörselleştirici.materyali.rengi
 			.bileşenleriniDeğiştir(0.0, 0.0, 0.0, 0.5);
 		değişkenYazıGörselleştirici.boyutunuDeğiştir(0.9);
 	}
