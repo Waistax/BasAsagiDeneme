@@ -25,7 +25,7 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 2;
 	/** Yaması. */
-	public static final int YAMASI = 13;
+	public static final int YAMASI = 14;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -231,9 +231,9 @@ public class Deneme {
 				0.0,
 				-1.0,
 				-1.0,
-				"abcçdefgğhıijklm",
-				"noöprsştuüvyzqwx",
-				"0123456789");
+				"0123456789",
+				".,:;-+*/\\!?(){}[",
+				"]=<>\\\"'|#@%_&^₺");
 		değişkenYazıGörselleştirici.çiz(bakışı.yumuşatılmışı);
 	}
 	
