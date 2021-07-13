@@ -40,7 +40,7 @@ public abstract class YazıDenemesi {
 	private void yazıOluştur() {
 		boyutları.add(boyutBul());
 		yatayKonumları.add(konumOluştur() - 0.1);
-		dikeyKonumları.add(konumOluştur());
+		dikeyKonumları.add(konumOluştur() * 2.0);
 	}
 	
 	private double boyutBul() {

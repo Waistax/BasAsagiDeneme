@@ -21,7 +21,7 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 4;
 	/** Yaması. */
-	public static final int YAMASI = 7;
+	public static final int YAMASI = 8;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
