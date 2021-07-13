@@ -59,7 +59,7 @@ public class DurağanYazıDenemesi extends YazıDenemesi {
 		final double yatayKonumu,
 		final double dikeyKonumu) {
 		final DurağanYazı yazı =
-			new DurağanYazı(new BelirliYazıOluşturucu(yazıŞekli, 20.0, yazısı));
+			new DurağanYazı(new BelirliYazıOluşturucu(yazıŞekli, 10.0, yazısı));
 		görselleştiricisi.ekle(yazı);
 		yazı.dönüşümü.boyutu.çarp(boyutu);
 		yazı.dönüşümü.konumu.birinciBileşeni = yatayKonumu;
