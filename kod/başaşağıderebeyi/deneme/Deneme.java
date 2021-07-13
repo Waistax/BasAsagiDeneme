@@ -25,7 +25,7 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 3;
 	/** Yaması. */
-	public static final int YAMASI = 2;
+	public static final int YAMASI = 3;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -101,7 +101,7 @@ public class Deneme {
 		dokular = new int[] {
 			bilgisi.dokuYükle("resimler/denemeResmi.png"),
 			bilgisi.dokuYükle("resimler/tersDenemeResmi.png"),
-			bilgisi.dokuYükle("resimler/sabitGenişlikliBüyükYazıŞekli.png") };
+			bilgisi.dokuYükle("resimler/büyükYazıŞekli.png") };
 		
 		final Materyal materyal = new Materyal(
 			dokular[dokuİmleci],
@@ -121,17 +121,17 @@ public class Deneme {
 		
 		final YazıŞekli yazıŞekli = bilgisi
 			.yazıŞekliYükle(
-				"resimler/sabitGenişlikliBüyükYazıŞekli.png",
+				"resimler/küçükYazıŞekli.png",
 				GL_LINEAR_MIPMAP_LINEAR,
 				GL_NEAREST,
-				"yazışekilleri/sabitGenişlikliBüyük.yşek");
+				"yazışekilleri/küçük.yşek");
 		
 		değişkenYazıGörselleştirici = new DeğişkenYazıGörselleştirici(
 			yazıŞekli,
 			yazıGölgelendiricisi,
 			izdüşüm,
 			100,
-			0.0);
+			45.0);
 		değişkenYazıGörselleştirici.materyali.rengi
 			.bileşenleriniDeğiştir(0.9, 0.1, 0.2, 1.0);
 		değişkenYazıGörselleştirici.materyali.tabanınınRengi
