@@ -32,7 +32,7 @@ public class DeğişkenYazıDenemesi extends YazıDenemesi {
 				"yazışekilleri/büyük.yşek");
 		final Gölgelendirici gölgelendirici = bilgisi
 			.gölgelendiriciYükle(
-				"gölgelendiriciler/durağanYazı.kgöl",
+				"gölgelendiriciler/değişkenYazı.kgöl",
 				"gölgelendiriciler/sıradan.bgöl");
 		final İzdüşüm izdüşüm = new İzdüşüm();
 		bakış = new Bakış();
