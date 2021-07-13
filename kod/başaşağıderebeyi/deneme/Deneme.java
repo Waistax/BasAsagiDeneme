@@ -21,7 +21,7 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 5;
 	/** Yaması. */
-	public static final int YAMASI = 4;
+	public static final int YAMASI = 6;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -80,11 +80,7 @@ public class Deneme {
 						0));
 		
 		arayüzü = new Arayüz(bilgisi);
-		yazıDenemesi = new DeğişkenYazıDenemesi(
-			bilgisi.satırlarınıYükle("yazılar/deneme.yazı").get(0),
-			1000,
-			0,
-			bilgisi);
+		yazıDenemesi = new DeğişkenYazıDenemesi(SÜRÜM, 1000, 0, bilgisi);
 	}
 	
 	private void güncelle() {
