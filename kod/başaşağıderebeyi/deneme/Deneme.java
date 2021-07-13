@@ -8,10 +8,14 @@ import static org.lwjgl.glfw.GLFW.*;
 
 import başaşağıderebeyi.iskelet.*;
 import başaşağıderebeyi.iskelet.görsel.*;
+import başaşağıderebeyi.iskelet.görsel.kaynak.*;
 import başaşağıderebeyi.iskelet.olaylar.*;
 import başaşağıderebeyi.kütüphane.girdi.*;
 import başaşağıderebeyi.kütüphane.matematik.doğrusalcebir.*;
 import başaşağıderebeyi.kütüphane.olay.*;
+
+import java.net.*;
+import java.util.*;
 
 /** Baş Aşağı İskelet'i deneyen uygulama. */
 @Uygulama
@@ -21,7 +25,7 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 5;
 	/** Yaması. */
-	public static final int YAMASI = 6;
+	public static final int YAMASI = 7;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -80,7 +84,25 @@ public class Deneme {
 						0));
 		
 		arayüzü = new Arayüz(bilgisi);
-		yazıDenemesi = new DeğişkenYazıDenemesi(SÜRÜM, 1000, 0, bilgisi);
+		
+		try {
+			final List<String> satırlar = Yükleyici.NESNESİ
+				.satırlarınıYükle(new URI("deneme/yazı.deneme"));
+			yazıDenemesi = "değişken".equalsIgnoreCase(satırlar.get(3)) ?
+				new DeğişkenYazıDenemesi(
+					satırlar.get(0),
+					Integer.parseInt(satırlar.get(1)),
+					Integer.parseInt(satırlar.get(2)),
+					bilgisi) :
+				new DurağanYazıDenemesi(
+					satırlar.get(0),
+					Integer.parseInt(satırlar.get(1)),
+					Integer.parseInt(satırlar.get(2)),
+					bilgisi);
+			
+		} catch (final Exception hata) {
+			hata.printStackTrace();
+		}
 	}
 	
 	private void güncelle() {
