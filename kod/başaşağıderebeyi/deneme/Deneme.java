@@ -21,7 +21,7 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 4;
 	/** Yaması. */
-	public static final int YAMASI = 9;
+	public static final int YAMASI = 10;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -80,7 +80,11 @@ public class Deneme {
 						0));
 		
 		arayüzü = new Arayüz(bilgisi);
-		yazıDenemesi = new DurağanYazıDenemesi(SÜRÜM, 1000, 0, bilgisi);
+		yazıDenemesi = new DurağanYazıDenemesi(
+			"Bugün fıstıkçı şahap değil jöleci yavuz alsa olur mu?",
+			1000,
+			0,
+			bilgisi);
 	}
 	
 	private void güncelle() {
