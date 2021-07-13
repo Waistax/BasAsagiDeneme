@@ -40,7 +40,7 @@ public class DeğişkenYazıDenemesi extends YazıDenemesi {
 			yazıŞekli,
 			gölgelendirici,
 			izdüşüm,
-			yazı.length(),
+			yazı.length() * yazıSayısı,
 			10.0);
 		this.yazıSayısı = yazıSayısı;
 	}
