@@ -26,7 +26,7 @@ class Arayüz {
 		(KARE_HIZI_BOYUTU - GENİŞLİK) / 2.0;
 	/** Kare hızı göstergesinin dikey konumu. */
 	public static final double KARE_HIZI_DİKEY_KONUMU =
-		YÜKSEKLİK / 2.0 - (KARE_HIZI_BOYUTU * 1.5);
+		YÜKSEKLİK / 2.0 - KARE_HIZI_BOYUTU * 1.5;
 	/** Kare hızı göstergesinin derinliği. */
 	public static final double KARE_HIZI_DERİNLİĞİ = -DERİNLİK / 2.0 * 0.999999;
 	/** Kare hızı göstergesinin biçimi. */
@@ -39,7 +39,7 @@ class Arayüz {
 	private final Gölgelendirici yazıGölgelendiricisi;
 	private final DeğişkenYazıGörselleştirici yazarı;
 	
-	Arayüz(UygulamaBilgisi uygulamaBilgisi) {
+	Arayüz(final UygulamaBilgisi uygulamaBilgisi) {
 		izdüşümü = new İzdüşüm(new Yöney3(GENİŞLİK, YÜKSEKLİK, DERİNLİK));
 		bakışı = new Bakış();
 		yazısınınŞekli = uygulamaBilgisi
