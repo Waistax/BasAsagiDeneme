@@ -1,14 +1,52 @@
 #version 440
 
-layout (location = 0) in vec4 konumu;
-layout (location = 1) in vec2 dokuKonumu;
+// Model
+layout (location = 0) in vec2 nitelikKoseKonumu;
+layout (location = 1) in vec2 nitelikDokuKonumu;
 
 out vec2 beneginDokuKonumu;
 
-uniform mat4 izdusumDizeyi;
-uniform mat4 donusumu;
+// Izdusum
+uniform vec3 izdusum;
+
+// Bakis
+uniform vec3 bakisKonumu;
+uniform float bakisBoyutu;
+uniform float bakisAcisi;
+
+// Donusum
+uniform vec3 donusumKonumu;
+uniform vec2 donusumBoyutu;
+uniform float donusumAcisi;
 
 void main() {
-    gl_Position = izdusumDizeyi * donusumu * konumu;
-    beneginDokuKonumu = dokuKonumu;
+	// Kendi merkezinden oranla.
+	vec2 olcekliKonumu = nitelikKoseKonumu * donusumBoyutu;
+
+	// Kendi merkezi etrafinda cevir.
+	vec2 nesneKonumu;
+	float dikmeligi = sin(donusumAcisi);
+	float esdikmeligi = cos(donusumAcisi);
+	nesneKonumu.x = olcekliKonumu.x * esdikmeligi - olcekliKonumu.y * dikmeligi;
+	nesneKonumu.y = olcekliKonumu.x * dikmeligi + olcekliKonumu.y * esdikmeligi;
+
+	// Kendi merkezinden oranla ve ekran konumuna tasi.
+	vec3 ekranKonumu = donusumKonumu - bakisKonumu + vec3(nesneKonumu, 0.0);
+	
+	// Bakanin etrafinda cevir.
+	vec3 gorunusKonumu;
+	dikmeligi = sin(bakisAcisi);
+	esdikmeligi = cos(bakisAcisi);
+	gorunusKonumu.x = ekranKonumu.x * esdikmeligi + ekranKonumu.y * dikmeligi;
+	gorunusKonumu.y = ekranKonumu.y * esdikmeligi - ekranKonumu.x * dikmeligi;
+
+	// Bakanin merkezinden oranla.
+	gorunusKonumu *= bakisBoyutu;
+	gorunusKonumu.z = ekranKonumu.z;
+
+	// Izdusumunu bul.
+    gl_Position = vec4(gorunusKonumu / izdusum * 2.0, 1.0);
+	
+    // Doku konumunu aktar.
+    beneginDokuKonumu = nitelikDokuKonumu;
 }

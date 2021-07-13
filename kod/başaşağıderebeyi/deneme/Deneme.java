@@ -25,7 +25,7 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 3;
 	/** Yaması. */
-	public static final int YAMASI = 4;
+	public static final int YAMASI = 5;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -38,6 +38,8 @@ public class Deneme {
 	private Yumuşatıcı<Bakış> bakışı;
 	private Yumuşatıcı<Görüntü> görüntüsü;
 	private DeğişkenYazıGörselleştirici değişkenYazıGörselleştirici;
+	private DurağanYazıGörselleştirici durağanYazıGörselleştirici;
+	private Yumuşatıcı<DurağanYazı> durağanYazı;
 	
 	/** Göstericiyi ve istenen tık oranını sağlar. */
 	public Deneme(final UygulamaBilgisi bilgisi) {
@@ -96,7 +98,7 @@ public class Deneme {
 		final İzdüşüm izdüşüm = new İzdüşüm(new Yöney3(16.0, 9.0, 10.0));
 		görselleştiricisi = new Görselleştirici(gölgelendirici, izdüşüm, 1);
 		
-		bakışı = new Yumuşatıcı<>(new Bakış(), new Bakış(), new Bakış());
+		bakışı = new Yumuşatıcı<>(new Bakış());
 		
 		dokular = new int[] {
 			bilgisi.dokuYükle("resimler/denemeResmi.png"),
@@ -107,17 +109,12 @@ public class Deneme {
 			dokular[dokuİmleci],
 			new Yöney4(Yöney4.BİR),
 			new Yöney4(1.0, 1.0, 1.0, 0.2));
-		görüntüsü = new Yumuşatıcı<>(
-			new Görüntü(materyal),
-			new Görüntü(
-				new Materyal(materyal.dokusu, new Yöney4(), new Yöney4())),
-			new Görüntü(
-				new Materyal(materyal.dokusu, new Yöney4(), new Yöney4())));
+		görüntüsü = new Yumuşatıcı<>(new Görüntü(materyal));
 		
 		final Gölgelendirici yazıGölgelendiricisi = bilgisi
 			.gölgelendiriciYükle(
 				"gölgelendiriciler/değişkenYazı.kgöl",
-				"gölgelendiriciler/değişkenYazı.bgöl");
+				"gölgelendiriciler/sıradan.bgöl");
 		
 		final YazıŞekli yazıŞekli = bilgisi
 			.yazıŞekliYükle(
@@ -137,11 +134,34 @@ public class Deneme {
 		değişkenYazıGörselleştirici.materyali.tabanınınRengi
 			.bileşenleriniDeğiştir(0.0, 0.0, 0.0, 0.5);
 		değişkenYazıGörselleştirici.boyutunuDeğiştir(0.9);
+		
+		final Gölgelendirici durağanYazıGölgelendiricisi = bilgisi
+			.gölgelendiriciYükle(
+				"gölgelendiriciler/durağanYazı.kgöl",
+				"gölgelendiriciler/sıradan.bgöl");
+		
+		durağanYazıGörselleştirici = new DurağanYazıGörselleştirici(
+			durağanYazıGölgelendiricisi,
+			izdüşüm);
+		
+		final DurağanYazı denemeYazısı = new DurağanYazı(
+			new BelirliYazıOluşturucu(
+				yazıŞekli,
+				20.0,
+				"Durağan",
+				"Yazı",
+				"Denemesi"));
+		
+		durağanYazı = new Yumuşatıcı<>(denemeYazısı);
+		durağanYazıGörselleştirici.ekle(durağanYazı.aradeğeri);
+		durağanYazı.anlığı.materyali.rengi
+			.bileşenleriniDeğiştir(0.1, 0.2, 1.0, 0.75);
 	}
 	
 	private void güncelle() {
 		bakışı.sakla();
 		görüntüsü.sakla();
+		durağanYazı.sakla();
 		
 		final Girdi girdi = İskelet.NESNESİ.girdisiniEdin();
 		if (girdi.klavyesininTuşunuEdin(GLFW_KEY_ESCAPE).salınmasınıEdin())
@@ -205,6 +225,8 @@ public class Deneme {
 			dokuİmleci = ++dokuİmleci % dokular.length;
 			görüntüsü.anlığı.materyali.dokusu = dokular[dokuİmleci];
 		}
+		
+		durağanYazı.anlığı.dönüşümü.boyutu.çarp(Math.random() + 0.5);
 	}
 	
 	private void saniyeyiSay() {
@@ -219,9 +241,8 @@ public class Deneme {
 	private void çiz() {
 		bakışı.bul();
 		görüntüsü.bul();
-		görselleştiricisi.ekle(görüntüsü.yumuşatılmışı.dönüşümü);
-		görselleştiricisi
-			.çiz(bakışı.yumuşatılmışı, görüntüsü.yumuşatılmışı.materyali);
+		görselleştiricisi.ekle(görüntüsü.aradeğeri.dönüşümü);
+		görselleştiricisi.çiz(bakışı.aradeğeri, görüntüsü.aradeğeri.materyali);
 		
 		değişkenYazıGörselleştirici.yaz(0.0, 0.0, -1.0, "Merhaba Dünya!");
 		değişkenYazıGörselleştirici
@@ -234,7 +255,8 @@ public class Deneme {
 				"0123456789",
 				".,:;-+*/\\!?(){}",
 				"[]=<>\"'|#@%_&^₺");
-		değişkenYazıGörselleştirici.çiz(bakışı.yumuşatılmışı);
+		değişkenYazıGörselleştirici.çiz(bakışı.aradeğeri);
+		durağanYazıGörselleştirici.çiz(bakışı.aradeğeri);
 	}
 	
 	@Override
