@@ -31,13 +31,6 @@ public class DurağanYazıDenemesi extends YazıDenemesi {
 		final İzdüşüm izdüşüm = new İzdüşüm();
 		görselleştiricisi =
 			new DurağanYazıGörselleştirici(gölgelendirici, izdüşüm);
-		
-		for (int i = 0; i < yazıSayısı; i++)
-			yazıyıEkle(
-				boyutları.get(i),
-				yatayKonumları.get(i),
-				dikeyKonumları.get(i));
-		
 		bakış = new Bakış();
 		yazıŞekli = bilgisi
 			.yazıŞekliYükle(
@@ -45,11 +38,20 @@ public class DurağanYazıDenemesi extends YazıDenemesi {
 				GL_LINEAR_MIPMAP_LINEAR,
 				GL_NEAREST,
 				"yazışekilleri/büyük.yşek");
+		yazılarıEkle(yazıSayısı);
 	}
 	
 	@Override
 	public void çiz() {
 		görselleştiricisi.çiz(bakış);
+	}
+	
+	private void yazılarıEkle(final int yazıSayısı) {
+		for (int i = 0; i < yazıSayısı; i++)
+			yazıyıEkle(
+				boyutları.get(i),
+				yatayKonumları.get(i),
+				dikeyKonumları.get(i));
 	}
 	
 	private void yazıyıEkle(
