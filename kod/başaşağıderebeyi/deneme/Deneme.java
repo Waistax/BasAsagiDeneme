@@ -19,9 +19,9 @@ public class Deneme {
 	/** Ana sürümü. */
 	public static final int ANA_SÜRÜMÜ = 1;
 	/** Ara sürümü. */
-	public static final int ARA_SÜRÜMÜ = 4;
+	public static final int ARA_SÜRÜMÜ = 5;
 	/** Yaması. */
-	public static final int YAMASI = 12;
+	public static final int YAMASI = 0;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -80,7 +80,7 @@ public class Deneme {
 						0));
 		
 		arayüzü = new Arayüz(bilgisi);
-		yazıDenemesi = new DurağanYazıDenemesi(
+		yazıDenemesi = new DeğişkenYazıDenemesi(
 			bilgisi.satırlarınıYükle("yazılar/deneme.yazı").get(0),
 			1000,
 			0,
