@@ -20,13 +20,13 @@ class Arayüz {
 	/** Arayüz izdüşümünün derinliği */
 	public static final double DERİNLİK = 1.0;
 	/** Kare hızı göstergesinin yazı boyutu. */
-	public static final double KARE_HIZI_BOYUTU = 10.0;
+	public static final double KARE_HIZI_BOYUTU = 16.0;
 	/** Kare hızı göstergesinin yatay konumu. */
 	public static final double KARE_HIZI_YATAY_KONUMU =
-		-GENİŞLİK / 2.0 + KARE_HIZI_BOYUTU;
+		(KARE_HIZI_BOYUTU - GENİŞLİK) / 2.0;
 	/** Kare hızı göstergesinin dikey konumu. */
 	public static final double KARE_HIZI_DİKEY_KONUMU =
-		YÜKSEKLİK / 2.0 - KARE_HIZI_BOYUTU;
+		YÜKSEKLİK / 2.0 - (KARE_HIZI_BOYUTU * 1.5);
 	/** Kare hızı göstergesinin derinliği. */
 	public static final double KARE_HIZI_DERİNLİĞİ = -DERİNLİK / 2.0 * 0.999999;
 	/** Kare hızı göstergesinin biçimi. */
