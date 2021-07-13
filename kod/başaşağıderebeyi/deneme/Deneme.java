@@ -14,7 +14,7 @@ import başaşağıderebeyi.kütüphane.girdi.*;
 import başaşağıderebeyi.kütüphane.matematik.doğrusalcebir.*;
 import başaşağıderebeyi.kütüphane.olay.*;
 
-import java.net.*;
+import java.nio.file.*;
 import java.util.*;
 
 /** Baş Aşağı İskelet'i deneyen uygulama. */
@@ -23,9 +23,9 @@ public class Deneme {
 	/** Ana sürümü. */
 	public static final int ANA_SÜRÜMÜ = 1;
 	/** Ara sürümü. */
-	public static final int ARA_SÜRÜMÜ = 5;
+	public static final int ARA_SÜRÜMÜ = 6;
 	/** Yaması. */
-	public static final int YAMASI = 9;
+	public static final int YAMASI = 0;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -87,7 +87,7 @@ public class Deneme {
 		
 		try {
 			final List<String> satırlar = Yükleyici.NESNESİ
-				.satırlarınıYükle(new URI("file:///./deneme/yazı.deneme"));
+				.satırlarınıYükle(Paths.get("deneme/yazı.deneme"));
 			yazıDenemesi = "değişken".equalsIgnoreCase(satırlar.get(3)) ?
 				new DeğişkenYazıDenemesi(
 					satırlar.get(0),
