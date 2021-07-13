@@ -39,7 +39,7 @@ public abstract class YazıDenemesi {
 	
 	private void yazıOluştur() {
 		boyutları.add(boyutBul());
-		yatayKonumları.add(konumOluştur());
+		yatayKonumları.add(konumOluştur() - 0.1);
 		dikeyKonumları.add(konumOluştur());
 	}
 	
@@ -48,7 +48,7 @@ public abstract class YazıDenemesi {
 	}
 	
 	private double konumOluştur() {
-		return (rastgelesi.nextDouble() - 0.5) / 10.0;
+		return (rastgelesi.nextDouble() - 0.5) / 1.0;
 	}
 	
 	/** Deneme yazılarını çizer. */
