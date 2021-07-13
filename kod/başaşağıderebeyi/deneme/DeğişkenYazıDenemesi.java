@@ -43,6 +43,12 @@ public class DeğişkenYazıDenemesi extends YazıDenemesi {
 			yazı.length(),
 			10.0);
 		this.yazıSayısı = yazıSayısı;
+		
+		for (int i = 0; i < yazıSayısı; i++)
+			boyutları
+				.set(
+					i,
+					boyutları.get(i) * yazıŞekli.boyutu.ikinciBileşeniniEdin());
 	}
 	
 	@Override
