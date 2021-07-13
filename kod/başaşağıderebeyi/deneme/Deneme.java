@@ -25,7 +25,7 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 5;
 	/** Yaması. */
-	public static final int YAMASI = 8;
+	public static final int YAMASI = 9;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -87,7 +87,7 @@ public class Deneme {
 		
 		try {
 			final List<String> satırlar = Yükleyici.NESNESİ
-				.satırlarınıYükle(new URI("file:///deneme/yazı.deneme"));
+				.satırlarınıYükle(new URI("file:///./deneme/yazı.deneme"));
 			yazıDenemesi = "değişken".equalsIgnoreCase(satırlar.get(3)) ?
 				new DeğişkenYazıDenemesi(
 					satırlar.get(0),
