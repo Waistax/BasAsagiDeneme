@@ -44,11 +44,11 @@ public abstract class YazıDenemesi {
 	}
 	
 	private double boyutBul() {
-		return rastgelesi.nextDouble() / 100.0;
+		return rastgelesi.nextDouble() / 1.0;
 	}
 	
 	private double konumOluştur() {
-		return (rastgelesi.nextDouble() - 0.5) / 100.0;
+		return (rastgelesi.nextDouble() - 0.5) / 1.0;
 	}
 	
 	/** Deneme yazılarını çizer. */
