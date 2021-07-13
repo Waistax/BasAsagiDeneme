@@ -63,6 +63,6 @@ public class DurağanYazıDenemesi extends YazıDenemesi {
 		görselleştiricisi.ekle(yazı);
 		yazı.dönüşümü.boyutu.çarp(boyutu);
 		yazı.dönüşümü.konumu.birinciBileşeni = yatayKonumu;
-		yazı.dönüşümü.konumu.birinciBileşeni = dikeyKonumu;
+		yazı.dönüşümü.konumu.ikinciBileşeni = dikeyKonumu;
 	}
 }
