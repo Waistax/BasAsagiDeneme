@@ -13,7 +13,6 @@ import başaşağıderebeyi.iskelet.görsel.görüntü.*;
 import başaşağıderebeyi.iskelet.görsel.yazı.*;
 import başaşağıderebeyi.iskelet.olaylar.*;
 import başaşağıderebeyi.kütüphane.girdi.*;
-import başaşağıderebeyi.kütüphane.günlük.*;
 import başaşağıderebeyi.kütüphane.matematik.doğrusalcebir.*;
 import başaşağıderebeyi.kütüphane.olay.*;
 
@@ -25,12 +24,18 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 4;
 	/** Yaması. */
-	public static final int YAMASI = 0;
+	public static final int YAMASI = 1;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
+	/** Ekranın yatay boyutu. */
+	public static final int GENİŞLİK = 1920;
+	/** Ekranın dikey boyutu. */
+	public static final int YÜKSEKLİK = 1080;
 	
 	private final UygulamaBilgisi bilgisi;
+	
+	private Arayüz arayüzü;
 	
 	private int[] dokular;
 	private int dokuİmleci;
@@ -47,8 +52,8 @@ public class Deneme {
 		Gösterici
 			.sağla(
 				new Gösterici(
-					1920,
-					1080,
+					GENİŞLİK,
+					YÜKSEKLİK,
 					"Deneme: " + SÜRÜM + " İskelet: " + İskelet.SÜRÜM,
 					true,
 					16,
@@ -68,12 +73,12 @@ public class Deneme {
 				new DinleyiciBilgisi<>(
 					GüncellemeOlayı.class,
 					olay -> güncelle()));
-		İskelet.NESNESİ
-			.güncellemeOlaylarınınDağıtıcısınıEdin()
-			.dinleyiciyiEkle(
-				new DinleyiciBilgisi<>(
-					SayaçOlayı.class,
-					olay -> saniyeyiSay()));
+//		İskelet.NESNESİ
+//			.güncellemeOlaylarınınDağıtıcısınıEdin()
+//			.dinleyiciyiEkle(
+//				new DinleyiciBilgisi<>(
+//					SayaçOlayı.class,
+//					olay -> saniyeyiSay()));
 		İskelet.NESNESİ
 			.çizimOlaylarınınDağıtıcısınıEdin()
 			.dinleyiciyiEkle(
@@ -90,6 +95,8 @@ public class Deneme {
 						bilgisi.glfwResmiYükle("resimler/imleç.png"),
 						0,
 						0));
+		
+		arayüzü = new Arayüz(bilgisi);
 		
 		final Gölgelendirici gölgelendirici = bilgisi
 			.gölgelendiriciYükle(
@@ -229,14 +236,14 @@ public class Deneme {
 		durağanYazı.anlığı.dönüşümü.boyutu.çarp(Math.random() + 0.5);
 	}
 	
-	private void saniyeyiSay() {
-		SistemGünlüğü.KONSOL
-			.yaz(
-				"Tık Oranı: " +
-					İskelet.NESNESİ.tıkHızınıEdin() +
-					" Kare Oranı: " +
-					İskelet.NESNESİ.kareHızınıEdin());
-	}
+//	private void saniyeyiSay() {
+//		SistemGünlüğü.KONSOL
+//			.yaz(
+//				"Tık Oranı: " +
+//					İskelet.NESNESİ.tıkHızınıEdin() +
+//					" Kare Oranı: " +
+//					İskelet.NESNESİ.kareHızınıEdin());
+//	}
 	
 	private void çiz() {
 		bakışı.bul();
@@ -259,6 +266,8 @@ public class Deneme {
 				"[]=<>\"'|#@%_&^₺");
 		değişkenYazıGörselleştirici.çiz(bakışı.aradeğeri);
 		durağanYazıGörselleştirici.çiz(bakışı.aradeğeri);
+		
+		arayüzü.çiz();
 	}
 	
 	@Override
