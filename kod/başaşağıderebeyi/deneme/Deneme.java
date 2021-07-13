@@ -23,9 +23,9 @@ public class Deneme {
 	/** Ana sürümü. */
 	public static final int ANA_SÜRÜMÜ = 1;
 	/** Ara sürümü. */
-	public static final int ARA_SÜRÜMÜ = 3;
+	public static final int ARA_SÜRÜMÜ = 4;
 	/** Yaması. */
-	public static final int YAMASI = 6;
+	public static final int YAMASI = 0;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -47,12 +47,12 @@ public class Deneme {
 		Gösterici
 			.sağla(
 				new Gösterici(
-					1280,
-					720,
+					1920,
+					1080,
 					"Deneme: " + SÜRÜM + " İskelet: " + İskelet.SÜRÜM,
-					false,
+					true,
 					16,
-					1,
+					0,
 					new Yöney3(0.2, 0.0, 0.2)));
 		
 		İskelet.NESNESİ.istenenTıkHızınıDeğiştir(10.0);
