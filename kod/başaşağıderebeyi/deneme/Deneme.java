@@ -25,7 +25,7 @@ public class Deneme {
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 3;
 	/** Yaması. */
-	public static final int YAMASI = 0;
+	public static final int YAMASI = 1;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -124,7 +124,7 @@ public class Deneme {
 				"resimler/sabitGenişlikliBüyükYazıŞekli.png",
 				GL_LINEAR_MIPMAP_LINEAR,
 				GL_NEAREST,
-				"yazışekilleri/sabitGenişlikliBüyükYazıŞekli.yşek");
+				"yazışekilleri/sabitGenişlikliBüyük.yşek");
 		
 		değişkenYazıGörselleştirici = new DeğişkenYazıGörselleştirici(
 			yazıŞekli,
