@@ -8,24 +8,22 @@ import static org.lwjgl.glfw.GLFW.*;
 
 import başaşağıderebeyi.iskelet.*;
 import başaşağıderebeyi.iskelet.görsel.*;
-import başaşağıderebeyi.iskelet.görsel.kaynak.*;
 import başaşağıderebeyi.iskelet.olaylar.*;
 import başaşağıderebeyi.kütüphane.girdi.*;
 import başaşağıderebeyi.kütüphane.matematik.doğrusalcebir.*;
 import başaşağıderebeyi.kütüphane.olay.*;
 
-import java.nio.file.*;
 import java.util.*;
 
 /** Baş Aşağı İskelet'i deneyen uygulama. */
-@Uygulama
+@Uygulama(adı = "deneme")
 public class Deneme {
 	/** Ana sürümü. */
 	public static final int ANA_SÜRÜMÜ = 1;
 	/** Ara sürümü. */
 	public static final int ARA_SÜRÜMÜ = 6;
 	/** Yaması. */
-	public static final int YAMASI = 0;
+	public static final int YAMASI = 1;
 	/** Bütün sürümü. */
 	public static final String SÜRÜM =
 		ANA_SÜRÜMÜ + "." + ARA_SÜRÜMÜ + "." + YAMASI;
@@ -79,15 +77,14 @@ public class Deneme {
 				Gösterici
 					.edin()
 					.imleçOluştur(
-						bilgisi.glfwResmiYükle("resimler/imleç.png"),
+						bilgisi.arşivdenGLFWResmiYükle("resimler/imleç.png"),
 						0,
 						0));
 		
 		arayüzü = new Arayüz(bilgisi);
 		
 		try {
-			final List<String> satırlar = Yükleyici.NESNESİ
-				.satırlarınıYükle(Paths.get("deneme/yazı.deneme"));
+			final List<String> satırlar = bilgisi.satırlarYükle("yazı.deneme");
 			yazıDenemesi = "değişken".equalsIgnoreCase(satırlar.get(3)) ?
 				new DeğişkenYazıDenemesi(
 					satırlar.get(0),

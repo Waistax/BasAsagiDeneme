@@ -7,7 +7,7 @@ package başaşağıderebeyi.deneme;
 import java.util.*;
 
 /** Rastgele yazı denemeleri oluşturur ve çizer. */
-public abstract class YazıDenemesi {
+abstract class YazıDenemesi {
 	/** Yazdığı yazı. */
 	protected final String yazısı;
 	/** Farklı yazımların boyutları. */

@@ -12,7 +12,7 @@ import başaşağıderebeyi.iskelet.görsel.görüntü.*;
 import başaşağıderebeyi.iskelet.görsel.yazı.*;
 
 /** Yazı denemesini değişken görselleştirici ile çizer. */
-public class DeğişkenYazıDenemesi extends YazıDenemesi {
+class DeğişkenYazıDenemesi extends YazıDenemesi {
 	private final DeğişkenYazıGörselleştirici görselleştirici;
 	private final Bakış bakış;
 	private final int yazıSayısı;
@@ -25,13 +25,13 @@ public class DeğişkenYazıDenemesi extends YazıDenemesi {
 		final UygulamaBilgisi bilgisi) {
 		super(yazı, yazıSayısı, tohumu);
 		final YazıŞekli yazıŞekli = bilgisi
-			.yazıŞekliYükle(
+			.arşivdenYazıŞekliYükle(
 				"resimler/büyükYazıŞekli.png",
 				GL_LINEAR_MIPMAP_LINEAR,
 				GL_NEAREST,
 				"yazışekilleri/büyük.yşek");
 		final Gölgelendirici gölgelendirici = bilgisi
-			.gölgelendiriciYükle(
+			.arşivdenGölgelendiriciYükle(
 				"gölgelendiriciler/değişkenYazı.kgöl",
 				"gölgelendiriciler/sıradan.bgöl");
 		final İzdüşüm izdüşüm = new İzdüşüm();
