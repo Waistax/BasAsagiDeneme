@@ -43,13 +43,13 @@ class Arayüz {
 		izdüşümü = new İzdüşüm(new Yöney3(GENİŞLİK, YÜKSEKLİK, DERİNLİK));
 		bakışı = new Bakış();
 		yazısınınŞekli = uygulamaBilgisi
-			.yazıŞekliYükle(
+			.arşivdenYazıŞekliYükle(
 				"resimler/küçükYazıŞekli.png",
 				GL_LINEAR_MIPMAP_LINEAR,
 				GL_NEAREST,
 				"yazışekilleri/küçük.yşek");
 		yazıGölgelendiricisi = uygulamaBilgisi
-			.gölgelendiriciYükle(
+			.arşivdenGölgelendiriciYükle(
 				"gölgelendiriciler/değişkenYazı.kgöl",
 				"gölgelendiriciler/sıradan.bgöl");
 		yazarı = new DeğişkenYazıGörselleştirici(
